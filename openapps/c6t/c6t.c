@@ -70,7 +70,8 @@ owerror_t c6t_receive(
    
    owerror_t            outcome;
    open_addr_t          neighbor;
-   bool                 foundNeighbor;
+   uint8_t              foundNeighbor;
+   uint8_t              parentIdxArr[MAXPREFERENCE];
    
    switch (coap_header->Code) {
       
@@ -82,8 +83,9 @@ owerror_t c6t_receive(
          msg->length                   = 0;
          
          // get preferred parent
-         foundNeighbor = neighbors_getPreferredParentEui64(&neighbor);
-         if (foundNeighbor==FALSE) {
+         foundNeighbor = neighbors_getPreferredParentEui64(parentIdxArr);
+         neighbors_getParent(&neighbor, ADDR_64B, parentIdxArr[0]);
+         if (foundNeighbor==0) {
             outcome                    = E_FAIL;
             coap_header->Code          = COAP_CODE_RESP_PRECONDFAILED;
             break;
@@ -111,8 +113,9 @@ owerror_t c6t_receive(
          msg->length                   = 0;
          
          // get preferred parent
-         foundNeighbor = neighbors_getPreferredParentEui64(&neighbor);
-         if (foundNeighbor==FALSE) {
+         foundNeighbor = neighbors_getPreferredParentEui64(parentIdxArr);
+         neighbors_getParent(&neighbor, ADDR_64B, parentIdxArr[0]);
+         if (foundNeighbor==0) {
             outcome                    = E_FAIL;
             coap_header->Code          = COAP_CODE_RESP_PRECONDFAILED;
             break;

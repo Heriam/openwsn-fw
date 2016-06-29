@@ -291,7 +291,6 @@ void icmpv6rpl_timer_DIO_task() {
 */
 void sendDIO() {
    OpenQueueEntry_t*    msg;
-   
    // stop if I'm not sync'ed
    if (ieee154e_isSynch()==FALSE) {
       
@@ -410,8 +409,10 @@ void sendDAO() {
    OpenQueueEntry_t*    msg;                // pointer to DAO messages
    uint8_t              nbrIdx;             // running neighbor index
    uint8_t              numTransitParents,numTargetParents;  // the number of parents indicated in transit option
-   open_addr_t         address;
-   open_addr_t*        prefix;
+   open_addr_t          address;
+   open_addr_t*         prefix;
+   uint8_t              parentIdx[MAXPREFERENCE];
+   uint8_t              parentPreference;
    
    if (ieee154e_isSynch()==FALSE) {
       // I'm not sync'ed 
@@ -465,33 +466,32 @@ void sendDAO() {
    memcpy(msg->l3_destinationAdd.addr_128b,icmpv6rpl_vars.dio.DODAGID,sizeof(icmpv6rpl_vars.dio.DODAGID));
    
    //===== fill in packet
-   
+   uint8_t i;
    //NOTE: limit to preferrred parent only the number of DAO transit addresses to send
-   
    //=== transit option -- from RFC 6550, page 55 - 1 transit information header per parent is required. 
    //getting only preferred parent as transit
-   numTransitParents=0;
-   neighbors_getPreferredParentEui64(&address);
-   packetfunctions_writeAddress(msg,&address,OW_BIG_ENDIAN);
-   prefix=idmanager_getMyID(ADDR_PREFIX);
-   packetfunctions_writeAddress(msg,prefix,OW_BIG_ENDIAN);
-   // update transit info fields
-   // from rfc6550 p.55 -- Variable, depending on whether or not the DODAG ParentAddress subfield is present.
-   // poipoi xv: it is not very clear if this includes all fields in the header. or as target info 2 bytes are removed.
-   // using the same pattern as in target information.
-   icmpv6rpl_vars.dao_transit.optionLength  = LENGTH_ADDR128b + sizeof(icmpv6rpl_dao_transit_ht)-2;
-   icmpv6rpl_vars.dao_transit.PathControl=0; //todo. this is to set the preference of this parent.      
-   icmpv6rpl_vars.dao_transit.type=OPTION_TRANSIT_INFORMATION_TYPE;
-           
-   // write transit info in packet
-   packetfunctions_reserveHeaderSize(msg,sizeof(icmpv6rpl_dao_transit_ht));
-   memcpy(
-          ((icmpv6rpl_dao_transit_ht*)(msg->payload)),
-          &(icmpv6rpl_vars.dao_transit),
-          sizeof(icmpv6rpl_dao_transit_ht)
-   );
-   numTransitParents++;
-   
+   numTransitParents = neighbors_getPreferredParentEui64(parentIdx);
+   for (nbrIdx=0; nbrIdx<numTransitParents; nbrIdx++) {
+      parentPreference = neighbors_getParent(&address, ADDR_64B, parentIdx[nbrIdx]);
+      packetfunctions_writeAddress(msg, &address, OW_BIG_ENDIAN);
+      prefix = idmanager_getMyID(ADDR_PREFIX);
+      packetfunctions_writeAddress(msg, prefix, OW_BIG_ENDIAN);
+      // update transit info fields
+      // from rfc6550 p.55 -- Variable, depending on whether or not the DODAG ParentAddress subfield is present.
+      // poipoi xv: it is not very clear if this includes all fields in the header. or as target info 2 bytes are removed.
+      // using the same pattern as in target information.
+      icmpv6rpl_vars.dao_transit.optionLength = LENGTH_ADDR128b + sizeof(icmpv6rpl_dao_transit_ht) - 2;
+      icmpv6rpl_vars.dao_transit.PathControl = parentPreference; //todo. this is to set the preference of this parent.
+      icmpv6rpl_vars.dao_transit.type = OPTION_TRANSIT_INFORMATION_TYPE;
+
+      // write transit info in packet
+      packetfunctions_reserveHeaderSize(msg, sizeof(icmpv6rpl_dao_transit_ht));
+      memcpy(
+              ((icmpv6rpl_dao_transit_ht *) (msg->payload)),
+              &(icmpv6rpl_vars.dao_transit),
+              sizeof(icmpv6rpl_dao_transit_ht)
+      );
+   }
    //target information is required. RFC 6550 page 55.
    /*
    One or more Transit Information options MUST be preceded by one or
@@ -503,7 +503,7 @@ void sendDAO() {
          // this neighbor is of higher DAGrank as I am. so it is my child
          
          // write it's address in DAO RFC6550 page 80 check point 1.
-         neighbors_getNeighbor(&address,ADDR_64B,nbrIdx); 
+         neighbors_getNeighbor(&address,ADDR_64B,nbrIdx);
          packetfunctions_writeAddress(msg,&address,OW_BIG_ENDIAN);
          prefix=idmanager_getMyID(ADDR_PREFIX);
          packetfunctions_writeAddress(msg,prefix,OW_BIG_ENDIAN);
@@ -516,7 +516,7 @@ void sendDAO() {
          icmpv6rpl_vars.dao_target.flags  = 0;       //must be 0
          icmpv6rpl_vars.dao_target.prefixLength = 128; //128 leading bits  -- full address.
          
-         // write transit info in packet
+         // write target info in packet
          packetfunctions_reserveHeaderSize(msg,sizeof(icmpv6rpl_dao_target_ht));
          memcpy(
                ((icmpv6rpl_dao_target_ht*)(msg->payload)),

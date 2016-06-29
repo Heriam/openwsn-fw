@@ -27,15 +27,17 @@ void otf_notif_removedCell(void) {
 //=========================== private =========================================
 
 void otf_addCell_task(void) {
+   uint8_t              parentIdxArr[MAXPREFERENCE];
    open_addr_t          neighbor;
-   bool                 foundNeighbor;
-   
+   uint8_t              foundNeighbor;
+
    // get preferred parent
-   foundNeighbor = neighbors_getPreferredParentEui64(&neighbor);
-   if (foundNeighbor==FALSE) {
+   foundNeighbor = neighbors_getPreferredParentEui64(parentIdxArr);
+   neighbors_getParent(&neighbor, ADDR_64B, parentIdxArr[0]);
+   if (foundNeighbor==0) {
       return;
    }
-   
+
    sixtop_setHandler(SIX_HANDLER_OTF);
    // call sixtop
    sixtop_request(
@@ -46,12 +48,14 @@ void otf_addCell_task(void) {
 }
 
 void otf_removeCell_task(void) {
+   uint8_t              parentIdxArr[MAXPREFERENCE];
    open_addr_t          neighbor;
-   bool                 foundNeighbor;
+   uint8_t              foundNeighbor;
    
    // get preferred parent
-   foundNeighbor = neighbors_getPreferredParentEui64(&neighbor);
-   if (foundNeighbor==FALSE) {
+   foundNeighbor = neighbors_getPreferredParentEui64(parentIdxArr);
+   neighbors_getParent(&neighbor, ADDR_64B, parentIdxArr[0]);
+   if (foundNeighbor==0) {
       return;
    }
    

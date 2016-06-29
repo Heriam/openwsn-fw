@@ -635,7 +635,8 @@ void openserial_goldenImageCommands(void){
    uint8_t  i;
    
    open_addr_t neighbor;
-   bool        foundNeighbor;
+   uint8_t        foundNeighbor;
+   uint8_t        parentIdxArr[MAXPREFERENCE];
    
    memset(cellList,0,sizeof(cellList));
    
@@ -739,8 +740,9 @@ void openserial_goldenImageCommands(void){
         case COMMAND_SET_6P_LIST:
         case COMMAND_SET_6P_CLEAR:
             // get preferred parent
-            foundNeighbor = neighbors_getPreferredParentEui64(&neighbor);
-            if (foundNeighbor==FALSE) {
+            foundNeighbor = neighbors_getPreferredParentEui64(parentIdxArr);
+            neighbors_getParent(&neighbor, ADDR_64B, parentIdxArr[0]);
+            if (foundNeighbor==0) {
                 break;
             }
              
