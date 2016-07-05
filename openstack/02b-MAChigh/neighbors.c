@@ -93,18 +93,14 @@ uint8_t neighbors_getPreferredParentEui64(uint8_t neiIdxArray[MAXPREFERENCE]) {
       minRankValArr[i]=neighbors_vars.myDAGrank;
    }
 
-   printf("##########myID: %02X############\n", idmanager_getMyID(ADDR_16B)->addr_16b[1]);
-
    //===== step 1. Try to find preferred parent
    for (i=0; i<MAXNUMNEIGHBORS; i++) {
       if (neighbors_vars.neighbors[i].used==TRUE){
          if (neighbors_vars.neighbors[i].parentPreference >0) {
-            printf("===Found preferred parent with preference value %d at neiIdx %d===\n", neighbors_vars.neighbors[i].parentPreference,i);
             neiIdxArray[MAXPREFERENCE-neighbors_vars.neighbors[i].parentPreference] = i;
             foundPreferred++;
          }
          if (neighbors_vars.neighbors[i].DAGrank < minRankValArr[MAXPREFERENCE-1]) {
-            printf("===Found parent at neiIdx %d===\n", i);
             for (j=MAXPREFERENCE-1;j>=0;j--){
                if (j == 0 || neighbors_vars.neighbors[i].DAGrank > minRankValArr[j-1]){
                   for (k=j+1;k<MAXPREFERENCE-1;k++){
@@ -128,9 +124,6 @@ uint8_t neighbors_getPreferredParentEui64(uint8_t neiIdxArray[MAXPREFERENCE]) {
       }
 
       for (j=0;j<foundParent;j++){
-         for (i=0;i<8;i++){
-            printf("%02X",neighbors_vars.neighbors[minRankIdxArr[j]].addr_64b.addr_64b[i]);
-         }
          neighbors_vars.neighbors[minRankIdxArr[j]].parentPreference       = MAXPREFERENCE - j;
          neighbors_vars.neighbors[minRankIdxArr[j]].stableNeighbor         = TRUE;
          neighbors_vars.neighbors[minRankIdxArr[j]].switchStabilityCounter = 0;
@@ -139,11 +132,6 @@ uint8_t neighbors_getPreferredParentEui64(uint8_t neiIdxArray[MAXPREFERENCE]) {
       memcpy(neiIdxArray,minRankIdxArr,sizeof(minRankIdxArr));
       foundPreferred = foundParent;
    }
-   printf("===Got parent index list===\n");
-   for (i=0;i<MAXPREFERENCE; i++){
-      printf("%d#",neiIdxArray[i]);
-   }
-   printf("===================%d======================\n",foundPreferred);
    return foundPreferred;
 }
 

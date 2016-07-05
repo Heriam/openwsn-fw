@@ -115,7 +115,7 @@ owerror_t forwarding_send(OpenQueueEntry_t* msg) {
          sam = IPHC_SAM_64B;
          dam = IPHC_DAM_64B;
          p_dest = &temp_dest_mac64b;      
-         p_src  = &temp_src_mac64b; 
+         p_src  = &temp_src_mac64b;
     } else {
         //not the same prefix. so the packet travels to another network
         //check if this is a source routing pkt. in case it is then the DAM is elided as it is in the SrcRouting header.

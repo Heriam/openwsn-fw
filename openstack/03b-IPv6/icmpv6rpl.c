@@ -466,7 +466,6 @@ void sendDAO() {
    memcpy(msg->l3_destinationAdd.addr_128b,icmpv6rpl_vars.dio.DODAGID,sizeof(icmpv6rpl_vars.dio.DODAGID));
    
    //===== fill in packet
-   uint8_t i;
    //NOTE: limit to preferrred parent only the number of DAO transit addresses to send
    //=== transit option -- from RFC 6550, page 55 - 1 transit information header per parent is required. 
    //getting only preferred parent as transit
