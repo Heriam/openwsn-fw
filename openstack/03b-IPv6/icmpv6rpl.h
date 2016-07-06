@@ -100,11 +100,11 @@ END_PACK
 */
 BEGIN_PACK
 typedef struct {
-   uint8_t         rplinstanceId;      ///< set by the DODAG root.
+//   uint8_t         rplinstanceId;      ///< set by the DODAG root.
    uint8_t         K_D_flags;
-   uint8_t         reserved;
+//   uint8_t         reserved;
    uint8_t         DAOSequence;
-   uint8_t         DODAGID[16];
+   uint8_t         DODAGID[8];
 } icmpv6rpl_dao_ht;
 END_PACK
 
@@ -114,8 +114,8 @@ END_PACK
 BEGIN_PACK
 typedef struct {
    uint8_t         type;               ///< set by the DODAG root.
-   uint8_t         optionLength;
-   uint8_t         E_flags;
+//   uint8_t         optionLength;
+//   uint8_t         E_flags;
    uint8_t         PathControl;
    uint8_t         PathSequence;   
    uint8_t         PathLifetime;   
@@ -128,9 +128,9 @@ END_PACK
 BEGIN_PACK
 typedef struct {
    uint8_t         type;               ///< set by the DODAG root.
-   uint8_t         optionLength;
-   uint8_t         flags;
-   uint8_t         prefixLength;  
+//   uint8_t         optionLength;
+//   uint8_t         flags;
+//   uint8_t         prefixLength;
 } icmpv6rpl_dao_target_ht;
 END_PACK
 
