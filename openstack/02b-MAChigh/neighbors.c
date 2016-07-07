@@ -105,7 +105,7 @@ uint8_t neighbors_getPreferredParentEui64(uint8_t neiIdxArray[MAXPREFERENCE]) {
             for (j=MAXPREFERENCE-1;j>=0;j--){
                if (j == 0 || neighbors_vars.neighbors[i].DAGrank > minRankValArr[j-1]){
                   //if candidate rank larger than parentIdx j-1
-                  for (k=j+1;k<MAXPREFERENCE;k++){
+                  for (k=MAXPREFERENCE-1;k>j;k--){
                      minRankValArr[k] = minRankValArr[k-1];
                      minRankIdxArr[k] = minRankIdxArr[k-1];
                      //Move value minRankIdxArr[k-1] from index k-1 to index k
