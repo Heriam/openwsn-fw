@@ -118,7 +118,7 @@ typedef struct {
 //   uint8_t         E_flags;
    uint8_t         PathControl;
    uint8_t         PathSequence;   
-   uint8_t         PathLifetime;   
+//   uint8_t         PathLifetime;
 } icmpv6rpl_dao_transit_ht;
 END_PACK
 

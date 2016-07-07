@@ -113,7 +113,7 @@ void icmpv6rpl_init() {
                                               PC4_A_DAO_Transit_Info | \
                                               PC4_B_DAO_Transit_Info;  
    icmpv6rpl_vars.dao_transit.PathSequence  = 0x00; // to be incremented at each TX
-   icmpv6rpl_vars.dao_transit.PathLifetime  = 0xAA;
+//   icmpv6rpl_vars.dao_transit.PathLifetime  = 0xAA;
    //target information
    icmpv6rpl_vars.dao_target.type  = OPTION_TARGET_INFORMATION_TYPE;
 //   icmpv6rpl_vars.dao_target.optionLength  = 0;

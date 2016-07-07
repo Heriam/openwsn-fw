@@ -13,7 +13,7 @@
 //=========================== define ==========================================
 
 #define MAXNUMNEIGHBORS           10
-#define MAXPREFERENCE             4
+#define MAXPREFERENCE             5
 #define BADNEIGHBORMAXRSSI        -80 //dBm
 #define GOODNEIGHBORMINRSSI       -90 //dBm
 #define SWITCHSTABILITYTHRESHOLD  3
