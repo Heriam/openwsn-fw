@@ -86,11 +86,11 @@ uint8_t neighbors_getPreferredParentEui64(uint8_t neiIdxArray[MAXPREFERENCE]) {
 
    foundPreferred       = 0;
    foundParent          = 0;
-   memset(neiIdxArray, 0, MAXPREFERENCE * sizeof(uint8_t));
-   memset(minRankIdxArr, 0, MAXPREFERENCE * sizeof(uint8_t));
 
    for (i=0;i<MAXPREFERENCE;i++){
       minRankValArr[i]=neighbors_vars.myDAGrank;
+      neiIdxArray[i]=MAXNUMNEIGHBORS+1;
+      minRankIdxArr[i]=MAXNUMNEIGHBORS+1;
    }
 
    //===== step 1. Try to find preferred parent
@@ -101,14 +101,19 @@ uint8_t neighbors_getPreferredParentEui64(uint8_t neiIdxArray[MAXPREFERENCE]) {
             foundPreferred++;
          }
          if (neighbors_vars.neighbors[i].DAGrank < minRankValArr[MAXPREFERENCE-1]) {
+            //Found parent candidate i
             for (j=MAXPREFERENCE-1;j>=0;j--){
                if (j == 0 || neighbors_vars.neighbors[i].DAGrank > minRankValArr[j-1]){
-                  for (k=j+1;k<MAXPREFERENCE-1;k++){
+                  //if candidate rank larger than parentIdx j-1
+                  for (k=j+1;k<MAXPREFERENCE;k++){
                      minRankValArr[k] = minRankValArr[k-1];
+                     minRankIdxArr[k] = minRankIdxArr[k-1];
+                     //Move value minRankIdxArr[k-1] from index k-1 to index k
                   }
                   minRankValArr[j] = neighbors_vars.neighbors[i].DAGrank;
                   minRankIdxArr[j] = i;
                   if (foundParent<MAXPREFERENCE){foundParent++;}
+                  //Insert nei i at index j, breaking
                   break;
                }
             }
