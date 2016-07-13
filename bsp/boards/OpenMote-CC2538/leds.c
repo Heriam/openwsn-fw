@@ -60,7 +60,7 @@ uint8_t leds_error_isOn() {
 
 // orange
 void    leds_sync_on() {
-	bspLedSet(BSP_LED_2);
+	//bspLedSet(BSP_LED_2);
 }
 void    leds_sync_off() {
 	bspLedClear(BSP_LED_2);
