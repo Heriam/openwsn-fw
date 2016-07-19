@@ -67,17 +67,9 @@ void bier_notifEndOfSlotFrame() {
 	// send received BIER packets up the stack
 	msg = openqueue_bierGetPacketToSendUp();
 	while(msg!=NULL){
-		if(msg->l2_bierBitmapLength>1){
-			openserial_printInfo(COMPONENT_BIER,
-					ERR_BIER_RECEIVED,
-					(errorparameter_t)*msg->l2_bierBitmap,
-					(errorparameter_t)*(msg->l2_bierBitmap+1));
-		} else{
-			openserial_printInfo(COMPONENT_BIER,
-					ERR_BIER_RECEIVED,
-					(errorparameter_t)*msg->l2_bierBitmap,
-					(errorparameter_t) msg->l2_dsn );
-		}
+		openserial_printBitString(msg->l2_bierBitmap,
+								  msg->l2_bierBitmapLength,
+								  msg->l2_trackID);
 		iphc_receive(msg);
 		msg = openqueue_bierGetPacketToSendUp();
 	}
