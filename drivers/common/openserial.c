@@ -150,14 +150,14 @@ owerror_t openserial_printBitString(uint8_t* buffer, uint8_t length, uint8_t tra
    openserial_vars.outputBufFilled  = TRUE;
    outputHdlcOpen();
    outputHdlcWrite(SERFRAME_MOTE2PC_BITSTRING);
+   outputHdlcWrite(idmanager_getMyID(ADDR_16B)->addr_16b[1]);   //low
+   outputHdlcWrite(idmanager_getMyID(ADDR_16B)->addr_16b[0]);   //high
    outputHdlcWrite(trackID);
-   outputHdlcWrite(idmanager_getMyID(ADDR_16B)->addr_16b[0]);
-   outputHdlcWrite(idmanager_getMyID(ADDR_16B)->addr_16b[1]);
-   outputHdlcWrite(asn[0]);
+   outputHdlcWrite(asn[0]);  //low
    outputHdlcWrite(asn[1]);
    outputHdlcWrite(asn[2]);
    outputHdlcWrite(asn[3]);
-   outputHdlcWrite(asn[4]);
+   outputHdlcWrite(asn[4]);  //high
    for (i=0;i<length;i++){
       outputHdlcWrite(buffer[i]);
    }
