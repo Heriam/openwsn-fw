@@ -76,7 +76,7 @@ void bier_notifEndOfSlotFrame() {
 			openserial_printInfo(COMPONENT_BIER,
 					ERR_BIER_RECEIVED,
 					(errorparameter_t)*msg->l2_bierBitmap,
-					(errorparameter_t)0);
+					(errorparameter_t) msg->l2_dsn );
 		}
 		iphc_receive(msg);
 		msg = openqueue_bierGetPacketToSendUp();

@@ -138,6 +138,18 @@ owerror_t openserial_printInfoErrorCritical(
    return E_SUCCESS;
 }
 
+owerror_t openserial_printBitString(uint8_t* buffer, uint8_t length, uint8_t trackID, uint){
+   uint8_t  i;
+   INTERRUPT_DECLARATION();
+   DISABLE_INTERRUPTS();
+   openserial_vars.outputBufFilled  = TRUE;
+   outputHdlcOpen();
+   outputHdlcWrite(SERFRAME_MOTE2PC_BITSTRING);
+
+   ENABLE_INTERRUPTS();
+   return E_SUCCESS;
+}
+
 owerror_t openserial_printData(uint8_t* buffer, uint8_t length) {
    uint8_t  i;
    uint8_t  asn[5];
