@@ -255,7 +255,6 @@ bool neighbors_isPreferredParent(open_addr_t* address) {
    // iterate through neighbor table
    for (i=0;i<MAXNUMNEIGHBORS;i++) {
       if (isThisRowMatching(address,i) && neighbors_vars.neighbors[i].parentPreference > MAXPREFERENCE - 2) {
-         printf("Sync-ing to parent with preference %d", neighbors_vars.neighbors[i].parentPreference);
          returnVal  = TRUE;
          break;
       }
