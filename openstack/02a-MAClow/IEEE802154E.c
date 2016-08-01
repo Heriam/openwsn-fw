@@ -991,6 +991,9 @@ port_INLINE void activity_ti1ORri1() {
              else if (schedule_getTrackID()==3){
             	 ieee154e_vars.sentOnTrackThree = TRUE;
              }
+             else if (schedule_getTrackID()==4){
+                ieee154e_vars.sentOnTrackFour = TRUE;
+             }
 
         	 // arm tt1
         	 radiotimer_schedule(DURATION_tt1);
@@ -1617,7 +1620,9 @@ port_INLINE void activity_ri5(PORT_RADIOTIMER_WIDTH capturedTime) {
         	  ieee154e_vars.sentOnTrackTwo = TRUE;
     	  } else if (schedule_getTrackID()==3){
     		  ieee154e_vars.sentOnTrackThree = TRUE;
-    	  }
+    	  } else if (schedule_getTrackID()==4){
+             ieee154e_vars.sentOnTrackFour = TRUE;
+          }
 
       }
 
@@ -2433,19 +2438,19 @@ void endSlot() {
        bier_notifEndOfSlotFrame();
 
        // leds for the demo
-       if(ieee154e_vars.sentOnTrackOne){
+       if(ieee154e_vars.sentOnTrackFour){
     	   leds_radio_on();
-    	   ieee154e_vars.sentOnTrackOne = FALSE;
+    	   ieee154e_vars.sentOnTrackFour = FALSE;
        }else{
     	   leds_radio_off();
        }
-       if(ieee154e_vars.sentOnTrackTwo){
+       if(ieee154e_vars.sentOnTrackOne){
     	   leds_error_on();
-    	   ieee154e_vars.sentOnTrackTwo = FALSE;
+    	   ieee154e_vars.sentOnTrackOne = FALSE;
        }else{
     	   leds_error_off();
        }
-
+       ieee154e_vars.sentOnTrackTwo   = FALSE;
        ieee154e_vars.sentOnTrackThree = FALSE;
    }
 
