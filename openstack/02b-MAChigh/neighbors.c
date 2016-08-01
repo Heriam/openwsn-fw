@@ -78,49 +78,65 @@ uint8_t neighbors_getNumNeighbors() {
 
 \param[out] addressToWrite Where to write the preferred parent's address to.
 */
-bool neighbors_getPreferredParentEui64(open_addr_t* addressToWrite) {
-   uint8_t   i;
-   bool      foundPreferred;
-   uint8_t   numNeighbors;
-   dagrank_t minRankVal;
-   uint8_t   minRankIdx;
-   
-   addressToWrite->type = ADDR_NONE;
-   
-   foundPreferred       = FALSE;
-   numNeighbors         = 0;
-   minRankVal           = MAXDAGRANK;
-   minRankIdx           = MAXNUMNEIGHBORS+1;
-   
+uint8_t neighbors_getPreferredParentEui64(uint8_t neiIdxArray[MAXPREFERENCE]) {
+   uint8_t    i,j,k;
+   uint8_t    foundPreferred,foundParent;
+   dagrank_t  minRankValArr[MAXPREFERENCE];
+   uint8_t    minRankIdxArr[MAXPREFERENCE];
+
+   foundPreferred       = 0;
+   foundParent          = 0;
+
+   for (i=0;i<MAXPREFERENCE;i++){
+      minRankValArr[i]=neighbors_vars.myDAGrank;
+      neiIdxArray[i]=MAXNUMNEIGHBORS+1;
+      minRankIdxArr[i]=MAXNUMNEIGHBORS+1;
+   }
+
    //===== step 1. Try to find preferred parent
    for (i=0; i<MAXNUMNEIGHBORS; i++) {
       if (neighbors_vars.neighbors[i].used==TRUE){
-         if (neighbors_vars.neighbors[i].parentPreference==MAXPREFERENCE) {
-            memcpy(addressToWrite,&(neighbors_vars.neighbors[i].addr_64b),sizeof(open_addr_t));
-            addressToWrite->type=ADDR_64B;
-            foundPreferred=TRUE;
+         if (neighbors_vars.neighbors[i].parentPreference >0) {
+            neiIdxArray[MAXPREFERENCE-neighbors_vars.neighbors[i].parentPreference] = i;
+            foundPreferred++;
          }
-         // identify neighbor with lowest rank
-         if (neighbors_vars.neighbors[i].DAGrank < minRankVal) {
-            minRankVal=neighbors_vars.neighbors[i].DAGrank;
-            minRankIdx=i;
+         if (neighbors_vars.neighbors[i].DAGrank < minRankValArr[MAXPREFERENCE-1]) {
+            //Found parent candidate i
+            for (j=MAXPREFERENCE-1;j>=0;j--){
+               if (j == 0 || neighbors_vars.neighbors[i].DAGrank > minRankValArr[j-1]){
+                  //if candidate rank larger than parentIdx j-1
+                  for (k=MAXPREFERENCE-1;k>j;k--){
+                     minRankValArr[k] = minRankValArr[k-1];
+                     minRankIdxArr[k] = minRankIdxArr[k-1];
+                     //Move value minRankIdxArr[k-1] from index k-1 to index k
+                  }
+                  minRankValArr[j] = neighbors_vars.neighbors[i].DAGrank;
+                  minRankIdxArr[j] = i;
+                  if (foundParent<MAXPREFERENCE){foundParent++;}
+                  //Insert nei i at index j, breaking
+                  break;
+               }
+            }
          }
-         numNeighbors++;
       }
    }
-   
    //===== step 2. (backup) Promote neighbor with min rank to preferred parent
-   if (foundPreferred==FALSE && numNeighbors > 0){
+   if (foundPreferred < foundParent){
       // promote neighbor
-      neighbors_vars.neighbors[minRankIdx].parentPreference       = MAXPREFERENCE;
-      neighbors_vars.neighbors[minRankIdx].stableNeighbor         = TRUE;
-      neighbors_vars.neighbors[minRankIdx].switchStabilityCounter = 0;
+
+      for (i=0;i<MAXNUMNEIGHBORS;i++) {
+         neighbors_vars.neighbors[neiIdxArray[i]].parentPreference = 0;
+      }
+
+      for (j=0;j<foundParent;j++){
+         neighbors_vars.neighbors[minRankIdxArr[j]].parentPreference       = MAXPREFERENCE - j;
+         neighbors_vars.neighbors[minRankIdxArr[j]].stableNeighbor         = TRUE;
+         neighbors_vars.neighbors[minRankIdxArr[j]].switchStabilityCounter = 0;
+      }
       // return its address
-      memcpy(addressToWrite,&(neighbors_vars.neighbors[minRankIdx].addr_64b),sizeof(open_addr_t));
-      addressToWrite->type=ADDR_64B;
-      foundPreferred=TRUE;         
+      memcpy(neiIdxArray,minRankIdxArr,sizeof(minRankIdxArr));
+      foundPreferred = foundParent;
    }
-   
    return foundPreferred;
 }
 
@@ -485,6 +501,29 @@ void  neighbors_getNeighbor(open_addr_t* address, uint8_t addr_type, uint8_t ind
                                (errorparameter_t)1);
          break; 
    }
+}
+
+//===== write neighborRow
+
+/***
+ * brief Write the address of a parent to some location and return parent preference.
+ */
+
+uint8_t  neighbors_getParent(open_addr_t* address, uint8_t addr_type, uint8_t index){
+   uint8_t parentPreference=0;
+   switch(addr_type) {
+      case ADDR_64B:
+         memcpy(&(address->addr_64b),&(neighbors_vars.neighbors[index].addr_64b.addr_64b),LENGTH_ADDR64b);
+           address->type=ADDR_64B;
+           parentPreference = neighbors_vars.neighbors[index].parentPreference;
+           break;
+      default:
+         openserial_printCritical(COMPONENT_NEIGHBORS,ERR_WRONG_ADDR_TYPE,
+                                  (errorparameter_t)addr_type,
+                                  (errorparameter_t)1);
+           break;
+   }
+   return parentPreference;
 }
 
 //===== setters

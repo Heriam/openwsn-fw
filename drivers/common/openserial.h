@@ -49,6 +49,7 @@ enum {
 #define SERFRAME_MOTE2PC_CRITICAL           ((uint8_t)'C')
 #define SERFRAME_MOTE2PC_REQUEST            ((uint8_t)'R')
 #define SERFRAME_MOTE2PC_SNIFFED_PACKET     ((uint8_t)'P')
+#define SERFRAME_MOTE2PC_BITSTRING          ((uint8_t)'B')
 
 // frames sent PC->mote
 #define SERFRAME_PC2MOTE_SETROOT            ((uint8_t)'R')
@@ -107,6 +108,7 @@ typedef struct {
 //=========================== prototypes ======================================
 
 void    openserial_init(void);
+owerror_t openserial_printBitString(uint8_t* buffer, uint8_t length, uint8_t trackID);
 owerror_t openserial_printStatus(uint8_t statusElement, uint8_t* buffer, uint8_t length);
 owerror_t openserial_printInfo(uint8_t calling_component, uint8_t error_code,
                               errorparameter_t arg1,

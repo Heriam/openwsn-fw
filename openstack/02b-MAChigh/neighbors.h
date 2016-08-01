@@ -13,7 +13,7 @@
 //=========================== define ==========================================
 
 #define MAXNUMNEIGHBORS           10
-#define MAXPREFERENCE             2
+#define MAXPREFERENCE             5
 #define BADNEIGHBORMAXRSSI        -80 //dBm
 #define GOODNEIGHBORMINRSSI       -90 //dBm
 #define SWITCHSTABILITYTHRESHOLD  3
@@ -76,7 +76,7 @@ void          neighbors_init(void);
 // getters
 dagrank_t     neighbors_getMyDAGrank(void);
 uint8_t       neighbors_getNumNeighbors(void);
-bool          neighbors_getPreferredParentEui64(open_addr_t* addressToWrite);
+uint8_t       neighbors_getPreferredParentEui64(uint8_t* neiIdxArray);
 open_addr_t*  neighbors_getKANeighbor(uint16_t kaPeriod);
 // setters
 void          neighbors_setMyDAGrank(dagrank_t rank);
@@ -105,6 +105,8 @@ void          neighbors_indicateRxDIO(OpenQueueEntry_t* msg);
 
 // get addresses
 void          neighbors_getNeighbor(open_addr_t* address,uint8_t addr_type,uint8_t index);
+// get parent addresses
+uint8_t       neighbors_getParent(open_addr_t* address, uint8_t addr_type, uint8_t index);
 // managing routing info
 void          neighbors_updateMyDAGrankAndNeighborPreference(void);
 // maintenance
