@@ -44,7 +44,11 @@ owerror_t bier_send(OpenQueueEntry_t *msg) {
 	msg->l2_keyIndex        = IEEE802154_SECURITY_K2_KEY_INDEX;
 
 	// TODO : set trackID in a clever way (dest address ?)
-	msg->l2_trackID = 1;
+	if(msg->l2_nextORpreviousHop.addr_64b[7]==0x4a){
+		msg->l2_trackID = 1;
+	}else if(msg->l2_nextORpreviousHop.addr_64b[7]==0x02){
+		msg->l2_trackID = 4;
+	}
 
 	return bier_send_internal(msg);
 }
@@ -71,16 +75,32 @@ void bier_notifEndOfSlotFrame() {
 	// send received BIER packets up the stack
 	msg = openqueue_bierGetPacketToSendUp();
 	while(msg!=NULL){
-		if(msg->l2_bierBitmapLength>1){
-			openserial_printInfo(COMPONENT_BIER,
-					ERR_BIER_RECEIVED,
-					(errorparameter_t)*msg->l2_bierBitmap,
-					(errorparameter_t)*(msg->l2_bierBitmap+1));
-		} else{
-			openserial_printInfo(COMPONENT_BIER,
-					ERR_BIER_RECEIVED,
-					(errorparameter_t)*msg->l2_bierBitmap,
-					(errorparameter_t)0);
+		if(msg->l2_trackID == 1) {
+			if (msg->l2_bierBitmapLength > 1) {
+				openserial_printInfo(COMPONENT_BIER,
+									 ERR_BIER_RECEIVED,
+									 (errorparameter_t) * msg->l2_bierBitmap,
+									 (errorparameter_t) * (msg->l2_bierBitmap + 1));
+			} else {
+				openserial_printInfo(COMPONENT_BIER,
+									 ERR_BIER_RECEIVED,
+									 (errorparameter_t) * msg->l2_bierBitmap,
+									 (errorparameter_t) 0);
+			}
+		}
+		else if(msg->l2_trackID == 4) {
+			if (msg->l2_bierBitmapLength > 1) {
+				openserial_printInfo(COMPONENT_BIER,
+									 ERR_TEST_RCVD_MSG_4,
+									 (errorparameter_t) * msg->l2_bierBitmap,
+									 (errorparameter_t) * (msg->l2_bierBitmap + 1));
+			} else {
+				openserial_printInfo(COMPONENT_BIER,
+									 ERR_TEST_RCVD_MSG_4,
+									 (errorparameter_t) * msg->l2_bierBitmap,
+									 (errorparameter_t) 0);
+			}
+		}
 		}
 		openserial_printBitString(msg->l2_bierBitmap,
 								  msg->l2_bierBitmapLength,
