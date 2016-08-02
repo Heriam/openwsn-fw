@@ -101,7 +101,6 @@ void bier_notifEndOfSlotFrame() {
 									 (errorparameter_t) 0);
 			}
 		}
-		}
 		openserial_printBitString(msg->l2_bierBitmap,
 								  msg->l2_bierBitmapLength,
 								  msg->l2_trackID);
