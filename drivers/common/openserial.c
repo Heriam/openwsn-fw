@@ -138,6 +138,35 @@ owerror_t openserial_printInfoErrorCritical(
    return E_SUCCESS;
 }
 
+owerror_t openserial_printBitString(uint8_t* buffer, uint8_t length, uint8_t trackID){
+   uint8_t  i;
+   uint8_t  asn[5];
+   INTERRUPT_DECLARATION();
+
+   // retrieve ASN
+   ieee154e_getAsn(asn);// byte01,byte23,byte4
+
+   DISABLE_INTERRUPTS();
+   openserial_vars.outputBufFilled  = TRUE;
+   outputHdlcOpen();
+   outputHdlcWrite(SERFRAME_MOTE2PC_BITSTRING);
+   outputHdlcWrite(idmanager_getMyID(ADDR_16B)->addr_16b[1]);   //low
+   outputHdlcWrite(idmanager_getMyID(ADDR_16B)->addr_16b[0]);   //high
+   outputHdlcWrite(trackID);
+   outputHdlcWrite(asn[0]);  //low
+   outputHdlcWrite(asn[1]);
+   outputHdlcWrite(asn[2]);
+   outputHdlcWrite(asn[3]);
+   outputHdlcWrite(asn[4]);  //high
+   for (i=0;i<length;i++){
+      outputHdlcWrite(buffer[i]);
+   }
+   outputHdlcClose();
+
+   ENABLE_INTERRUPTS();
+   return E_SUCCESS;
+}
+
 owerror_t openserial_printData(uint8_t* buffer, uint8_t length) {
    uint8_t  i;
    uint8_t  asn[5];
@@ -642,7 +671,8 @@ void openserial_goldenImageCommands(void){
    uint8_t  i;
    
    open_addr_t neighbor;
-   bool        foundNeighbor;
+   uint8_t        foundNeighbor;
+   uint8_t        parentIdxArr[MAXPREFERENCE];
    
    memset(cellList,0,sizeof(cellList));
    
@@ -746,8 +776,9 @@ void openserial_goldenImageCommands(void){
         case COMMAND_SET_6P_LIST:
         case COMMAND_SET_6P_CLEAR:
             // get preferred parent
-            foundNeighbor = neighbors_getPreferredParentEui64(&neighbor);
-            if (foundNeighbor==FALSE) {
+            foundNeighbor = neighbors_getPreferredParentEui64(parentIdxArr);
+            neighbors_getParent(&neighbor, ADDR_64B, parentIdxArr[0]);
+            if (foundNeighbor==0) {
                 break;
             }
              
