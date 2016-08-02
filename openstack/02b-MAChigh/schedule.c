@@ -408,26 +408,6 @@ void schedule_init() {
 			0,									  // bundleID
 			FALSE                                // bier
 	);
-	schedule_addActiveSlot(
-			66,                 // slot offset
-			CELLTYPE_TXRX,                      // type of slot
-			TRUE,                               // shared?
-			SCHEDULE_MINIMAL_6TISCH_CHANNELOFFSET,    // channel offset
-			&temp_neighbor,                      // neighbor
-			0,									  // trackID
-			0,									  // bundleID
-			FALSE                                // bier
-	);
-	schedule_addActiveSlot(
-			87,                 // slot offset
-			CELLTYPE_TXRX,                      // type of slot
-			TRUE,                               // shared?
-			SCHEDULE_MINIMAL_6TISCH_CHANNELOFFSET,    // channel offset
-			&temp_neighbor,                      // neighbor
-			0,									  // trackID
-			0,									  // bundleID
-			FALSE                                // bier
-	);
 }
 
 /**
