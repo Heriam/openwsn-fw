@@ -44,7 +44,11 @@ owerror_t bier_send(OpenQueueEntry_t *msg) {
 	msg->l2_keyIndex        = IEEE802154_SECURITY_K2_KEY_INDEX;
 
 	// TODO : set trackID in a clever way (dest address ?)
-	msg->l2_trackID = 1;
+	if(msg->l2_nextORpreviousHop.addr_64b[7]==0x4a){
+		msg->l2_trackID = 1;
+	}else if(msg->l2_nextORpreviousHop.addr_64b[7]==0x02){
+		msg->l2_trackID = 4;
+	}
 
 	return bier_send_internal(msg);
 }
@@ -71,26 +75,35 @@ void bier_notifEndOfSlotFrame() {
 	// send received BIER packets up the stack
 	msg = openqueue_bierGetPacketToSendUp();
 	while(msg!=NULL){
-		if(msg->l2_bierBitmapLength>1){
-			openserial_printInfo(COMPONENT_BIER,
-					ERR_BIER_RECEIVED,
-					(errorparameter_t)*msg->l2_bierBitmap,
-					(errorparameter_t)*(msg->l2_bierBitmap+1));
-		} else{
-			openserial_printInfo(COMPONENT_BIER,
-					ERR_BIER_RECEIVED,
-					(errorparameter_t)*msg->l2_bierBitmap,
-					(errorparameter_t)0);
+		if(msg->l2_trackID==1) {
+			if (msg->l2_bierBitmapLength > 1) {
+				openserial_printInfo(COMPONENT_BIER,
+									 ERR_BIER_RECEIVED,
+									 (errorparameter_t) * msg->l2_bierBitmap,
+									 (errorparameter_t) * (msg->l2_bierBitmap + 1));
+			} else {
+				openserial_printInfo(COMPONENT_BIER,
+									 ERR_BIER_RECEIVED,
+									 (errorparameter_t) * msg->l2_bierBitmap,
+									 (errorparameter_t) 0);
+			}
 		}
-		// print difference with previous ASN if different from slotframe size:
-		if(bier_asnDiff(&bier_vars.last_asn, &msg->l2_asn) != (uint16_t)schedule_getFrameLength()){
-			openserial_printInfo(COMPONENT_BIER,
-					ERR_TEST_SLOTSSINCELASTPACKET,
-					(errorparameter_t)bier_asnDiff(&bier_vars.last_asn, &msg->l2_asn),
-					(errorparameter_t)1009);
+		else if(msg->l2_trackID==4) {
+			if (msg->l2_bierBitmapLength > 1) {
+				openserial_printInfo(COMPONENT_BIER,
+									 ERR_TEST_RCVD_MSG_4,
+									 (errorparameter_t) * msg->l2_bierBitmap,
+									 (errorparameter_t) * (msg->l2_bierBitmap + 1));
+			} else {
+				openserial_printInfo(COMPONENT_BIER,
+									 ERR_TEST_RCVD_MSG_4,
+									 (errorparameter_t) * msg->l2_bierBitmap,
+									 (errorparameter_t) 0);
+			}
 		}
-		// store previous ASN
-		memcpy(&bier_vars.last_asn, &msg->l2_asn, sizeof(asn_t));
+		openserial_printBitString(msg->l2_bierBitmap,
+							  msg->l2_bierBitmapLength,
+							  msg->l2_trackID);
 		// send up the stack
 		iphc_receive(msg);
 		msg = openqueue_bierGetPacketToSendUp();
