@@ -45,7 +45,7 @@ void schedule_init() {
 	// serial RX slot(s)
 	start_slotOffset += SCHEDULE_MINIMAL_6TISCH_ACTIVE_CELLS;
 	memset(&temp_neighbor,0,sizeof(temp_neighbor));
-	for (running_slotOffset=start_slotOffset;running_slotOffset<start_slotOffset+9;running_slotOffset++) {
+	for (running_slotOffset=start_slotOffset;running_slotOffset<start_slotOffset+12;running_slotOffset++) {
 		schedule_addActiveSlot(
 				running_slotOffset,                    // slot offset
 				CELLTYPE_SERIALRX,                     // type of slot
@@ -63,7 +63,7 @@ void schedule_init() {
 	switch (idmanager_getMyID(ADDR_64B)->addr_64b[7]) {
 	case 0xd9 :
 		schedule_addActiveSlot(
-				10,                   // slot offset
+				13,                   // slot offset
 				CELLTYPE_TX,                  		  // type of slot
 				FALSE,                                // shared?
 				0,                                    // channel offset
@@ -73,7 +73,7 @@ void schedule_init() {
 				TRUE
 		);
 		schedule_addActiveSlot(
-				11,                   // slot offset
+				14,                   // slot offset
 				CELLTYPE_TX,                  		  // type of slot
 				FALSE,                                // shared?
 				0,                                    // channel offset
@@ -83,7 +83,7 @@ void schedule_init() {
 				TRUE
 		);
 		schedule_addActiveSlot(
-				67,                   // slot offset
+				70,                   // slot offset
 				CELLTYPE_TX,                  		  // type of slot
 				FALSE,                                // shared?
 				0,                                    // channel offset
@@ -93,7 +93,7 @@ void schedule_init() {
 				TRUE
 		);
 		schedule_addActiveSlot(
-				68,                   // slot offset
+				71,                   // slot offset
 				CELLTYPE_TX,                  		  // type of slot
 				FALSE,                                // shared?
 				0,                                    // channel offset
@@ -105,7 +105,7 @@ void schedule_init() {
 		break;
 	case 0x4a :
 		schedule_addActiveSlot(
-				10,                   // slot offset
+				13,                   // slot offset
 				CELLTYPE_RX,                  		  // type of slot
 				FALSE,                                // shared?
 				0,                                    // channel offset
@@ -115,7 +115,7 @@ void schedule_init() {
 				TRUE
 		);
 		schedule_addActiveSlot(
-				12,                   // slot offset
+				15,                   // slot offset
 				CELLTYPE_TX,                  		  // type of slot
 				FALSE,                                // shared?
 				0,                                    // channel offset
@@ -125,7 +125,7 @@ void schedule_init() {
 				TRUE
 		);
 		schedule_addActiveSlot(
-				13,                   // slot offset
+				16,                   // slot offset
 				CELLTYPE_RX,                  		  // type of slot
 				FALSE,                                // shared?
 				0,                                    // channel offset
@@ -135,7 +135,7 @@ void schedule_init() {
 				TRUE
 		);
 		schedule_addActiveSlot(
-				14,                   // slot offset
+				17,                   // slot offset
 				CELLTYPE_TX,                  		  // type of slot
 				FALSE,                                // shared?
 				0,                                    // channel offset
@@ -145,7 +145,7 @@ void schedule_init() {
 				TRUE
 		);
 		schedule_addActiveSlot(
-				67,                   // slot offset
+				70,                   // slot offset
 				CELLTYPE_RX,                  		  // type of slot
 				FALSE,                                // shared?
 				0,                                    // channel offset
@@ -155,7 +155,7 @@ void schedule_init() {
 				TRUE
 		);
 		schedule_addActiveSlot(
-				69,                   // slot offset
+				72,                   // slot offset
 				CELLTYPE_TX,                  		  // type of slot
 				FALSE,                                // shared?
 				0,                                    // channel offset
@@ -165,7 +165,7 @@ void schedule_init() {
 				TRUE
 		);
 		schedule_addActiveSlot(
-				70,                   // slot offset
+				73,                   // slot offset
 				CELLTYPE_RX,                  		  // type of slot
 				FALSE,                                // shared?
 				0,                                    // channel offset
@@ -175,7 +175,7 @@ void schedule_init() {
 				TRUE
 		);
 		schedule_addActiveSlot(
-				71,                   // slot offset
+				74,                   // slot offset
 				CELLTYPE_TX,                  		  // type of slot
 				FALSE,                                // shared?
 				0,                                    // channel offset
@@ -187,7 +187,7 @@ void schedule_init() {
 		break;
 	case 0x02 :
 		schedule_addActiveSlot(
-				11,                   // slot offset
+				14,                   // slot offset
 				CELLTYPE_RX,                  		  // type of slot
 				FALSE,                                // shared?
 				0,                                    // channel offset
@@ -197,7 +197,7 @@ void schedule_init() {
 				TRUE
 		);
 		schedule_addActiveSlot(
-				12,                   // slot offset
+				15,                   // slot offset
 				CELLTYPE_RX,                  		  // type of slot
 				FALSE,                                // shared?
 				0,                                    // channel offset
@@ -207,7 +207,7 @@ void schedule_init() {
 				TRUE
 		);
 		schedule_addActiveSlot(
-				13,                   // slot offset
+				16,                   // slot offset
 				CELLTYPE_TX,                  		  // type of slot
 				FALSE,                                // shared?
 				0,                                    // channel offset
@@ -217,7 +217,7 @@ void schedule_init() {
 				TRUE
 		);
 		schedule_addActiveSlot(
-				15,                   // slot offset
+				18,                   // slot offset
 				CELLTYPE_TX,                  		  // type of slot
 				FALSE,                                // shared?
 				0,                                    // channel offset
@@ -227,7 +227,7 @@ void schedule_init() {
 				TRUE
 		);
 		schedule_addActiveSlot(
-				68,                   // slot offset
+				71,                   // slot offset
 				CELLTYPE_RX,                  		  // type of slot
 				FALSE,                                // shared?
 				0,                                    // channel offset
@@ -237,7 +237,7 @@ void schedule_init() {
 				TRUE
 		);
 		schedule_addActiveSlot(
-				69,                   // slot offset
+				72,                   // slot offset
 				CELLTYPE_RX,                  		  // type of slot
 				FALSE,                                // shared?
 				0,                                    // channel offset
@@ -247,7 +247,7 @@ void schedule_init() {
 				TRUE
 		);
 		schedule_addActiveSlot(
-				70,                   // slot offset
+				73,                   // slot offset
 				CELLTYPE_TX,                  		  // type of slot
 				FALSE,                                // shared?
 				0,                                    // channel offset
@@ -257,7 +257,7 @@ void schedule_init() {
 				TRUE
 		);
 		schedule_addActiveSlot(
-				72,                   // slot offset
+				75,                   // slot offset
 				CELLTYPE_TX,                  		  // type of slot
 				FALSE,                                // shared?
 				0,                                    // channel offset
@@ -269,7 +269,7 @@ void schedule_init() {
 		break;
 	case 0xd8 :
 		schedule_addActiveSlot(
-				14,                   // slot offset
+				17,                   // slot offset
 				CELLTYPE_RX,                  		  // type of slot
 				FALSE,                                // shared?
 				0,                                    // channel offset
@@ -279,7 +279,7 @@ void schedule_init() {
 				TRUE
 		);
 		schedule_addActiveSlot(
-				16,                   // slot offset
+				19,                   // slot offset
 				CELLTYPE_TX,                  		  // type of slot
 				FALSE,                                // shared?
 				0,                                    // channel offset
@@ -289,7 +289,7 @@ void schedule_init() {
 				TRUE
 		);
 		schedule_addActiveSlot(
-				17,                   // slot offset
+				20,                   // slot offset
 				CELLTYPE_RX,                  		  // type of slot
 				FALSE,                                // shared?
 				0,                                    // channel offset
@@ -299,7 +299,7 @@ void schedule_init() {
 				TRUE
 		);
 		schedule_addActiveSlot(
-				18,                   // slot offset
+				21,                   // slot offset
 				CELLTYPE_TX,                  		  // type of slot
 				FALSE,                                // shared?
 				0,                                    // channel offset
@@ -309,7 +309,7 @@ void schedule_init() {
 				TRUE
 		);
 		schedule_addActiveSlot(
-				71,                   // slot offset
+				74,                   // slot offset
 				CELLTYPE_RX,                  		  // type of slot
 				FALSE,                                // shared?
 				0,                                    // channel offset
@@ -319,7 +319,7 @@ void schedule_init() {
 				TRUE
 		);
 		schedule_addActiveSlot(
-				73,                   // slot offset
+				76,                   // slot offset
 				CELLTYPE_TX,                  		  // type of slot
 				FALSE,                                // shared?
 				0,                                    // channel offset
@@ -329,7 +329,7 @@ void schedule_init() {
 				TRUE
 		);
 		schedule_addActiveSlot(
-				74,                   // slot offset
+				77,                   // slot offset
 				CELLTYPE_RX,                  		  // type of slot
 				FALSE,                                // shared?
 				0,                                    // channel offset
@@ -339,7 +339,7 @@ void schedule_init() {
 				TRUE
 		);
 		schedule_addActiveSlot(
-				75,                   // slot offset
+				78,                   // slot offset
 				CELLTYPE_TX,                  		  // type of slot
 				FALSE,                                // shared?
 				0,                                    // channel offset
@@ -351,7 +351,7 @@ void schedule_init() {
 		break;
 	case 0xc7 :
 		schedule_addActiveSlot(
-				15,                   // slot offset
+				18,                   // slot offset
 				CELLTYPE_RX,                  		  // type of slot
 				FALSE,                                // shared?
 				0,                                    // channel offset
@@ -361,7 +361,7 @@ void schedule_init() {
 				TRUE
 		);
 		schedule_addActiveSlot(
-				16,                   // slot offset
+				19,                   // slot offset
 				CELLTYPE_RX,                  		  // type of slot
 				FALSE,                                // shared?
 				0,                                    // channel offset
@@ -371,7 +371,7 @@ void schedule_init() {
 				TRUE
 		);
 		schedule_addActiveSlot(
-				17,                   // slot offset
+				20,                   // slot offset
 				CELLTYPE_TX,                  		  // type of slot
 				FALSE,                                // shared?
 				0,                                    // channel offset
@@ -381,7 +381,7 @@ void schedule_init() {
 				TRUE
 		);
 		schedule_addActiveSlot(
-				19,                   // slot offset
+				22,                   // slot offset
 				CELLTYPE_TX,                  		  // type of slot
 				FALSE,                                // shared?
 				0,                                    // channel offset
@@ -391,7 +391,7 @@ void schedule_init() {
 				TRUE
 		);
 		schedule_addActiveSlot(
-				72,                   // slot offset
+				75,                   // slot offset
 				CELLTYPE_RX,                  		  // type of slot
 				FALSE,                                // shared?
 				0,                                    // channel offset
@@ -401,7 +401,7 @@ void schedule_init() {
 				TRUE
 		);
 		schedule_addActiveSlot(
-				73,                   // slot offset
+				76,                   // slot offset
 				CELLTYPE_RX,                  		  // type of slot
 				FALSE,                                // shared?
 				0,                                    // channel offset
@@ -411,7 +411,7 @@ void schedule_init() {
 				TRUE
 		);
 		schedule_addActiveSlot(
-				74,                   // slot offset
+				77,                   // slot offset
 				CELLTYPE_TX,                  		  // type of slot
 				FALSE,                                // shared?
 				0,                                    // channel offset
@@ -421,7 +421,7 @@ void schedule_init() {
 				TRUE
 		);
 		schedule_addActiveSlot(
-				76,                   // slot offset
+				79,                   // slot offset
 				CELLTYPE_TX,                  		  // type of slot
 				FALSE,                                // shared?
 				0,                                    // channel offset
@@ -433,7 +433,7 @@ void schedule_init() {
 		break;
 	case 0xf6 :
 		schedule_addActiveSlot(
-				18,                   // slot offset
+				21,                   // slot offset
 				CELLTYPE_RX,                  		  // type of slot
 				FALSE,                                // shared?
 				0,                                    // channel offset
@@ -443,7 +443,7 @@ void schedule_init() {
 				TRUE
 		);
 		schedule_addActiveSlot(
-				20,                   // slot offset
+				23,                   // slot offset
 				CELLTYPE_TX,                  		  // type of slot
 				FALSE,                                // shared?
 				0,                                    // channel offset
@@ -453,7 +453,7 @@ void schedule_init() {
 				TRUE
 		);
 		schedule_addActiveSlot(
-				21,                   // slot offset
+				24,                   // slot offset
 				CELLTYPE_RX,                  		  // type of slot
 				FALSE,                                // shared?
 				0,                                    // channel offset
@@ -463,7 +463,7 @@ void schedule_init() {
 				TRUE
 		);
 		schedule_addActiveSlot(
-				22,                   // slot offset
+				25,                   // slot offset
 				CELLTYPE_TX,                  		  // type of slot
 				FALSE,                                // shared?
 				0,                                    // channel offset
@@ -473,7 +473,7 @@ void schedule_init() {
 				TRUE
 		);
 		schedule_addActiveSlot(
-				75,                   // slot offset
+				78,                   // slot offset
 				CELLTYPE_RX,                  		  // type of slot
 				FALSE,                                // shared?
 				0,                                    // channel offset
@@ -483,7 +483,7 @@ void schedule_init() {
 				TRUE
 		);
 		schedule_addActiveSlot(
-				77,                   // slot offset
+				80,                   // slot offset
 				CELLTYPE_TX,                  		  // type of slot
 				FALSE,                                // shared?
 				0,                                    // channel offset
@@ -493,7 +493,7 @@ void schedule_init() {
 				TRUE
 		);
 		schedule_addActiveSlot(
-				78,                   // slot offset
+				81,                   // slot offset
 				CELLTYPE_RX,                  		  // type of slot
 				FALSE,                                // shared?
 				0,                                    // channel offset
@@ -503,7 +503,7 @@ void schedule_init() {
 				TRUE
 		);
 		schedule_addActiveSlot(
-				79,                   // slot offset
+				82,                   // slot offset
 				CELLTYPE_TX,                  		  // type of slot
 				FALSE,                                // shared?
 				0,                                    // channel offset
@@ -515,100 +515,38 @@ void schedule_init() {
 		break;
 	case 0xec :
 		schedule_addActiveSlot(
-				19,                   // slot offset
-				CELLTYPE_RX,                  		  // type of slot
-				FALSE,                                // shared?
-				0,                                    // channel offset
-				&temp_neighbor,                       // neighbor
-				1,									  // track ID
-				7,									  // bierbitindex
-				TRUE
-		);
-		schedule_addActiveSlot(
-				20,                   // slot offset
-				CELLTYPE_RX,                  		  // type of slot
-				FALSE,                                // shared?
-				0,                                    // channel offset
-				&temp_neighbor,                       // neighbor
-				1,									  // track ID
-				8,									  // bierbitindex
-				TRUE
-		);
-		schedule_addActiveSlot(
-				21,                   // slot offset
-				CELLTYPE_TX,                  		  // type of slot
-				FALSE,                                // shared?
-				0,                                    // channel offset
-				&temp_neighbor,                       // neighbor
-				1,									  // track ID
-				8,									  // bierbitindex
-				TRUE
-		);
-		schedule_addActiveSlot(
-				23,                   // slot offset
-				CELLTYPE_TX,                  		  // type of slot
-				FALSE,                                // shared?
-				0,                                    // channel offset
-				&temp_neighbor,                       // neighbor
-				1,									  // track ID
-				10,									  // bierbitindex
-				TRUE
-		);
-		schedule_addActiveSlot(
-				76,                   // slot offset
-				CELLTYPE_RX,                  		  // type of slot
-				FALSE,                                // shared?
-				0,                                    // channel offset
-				&temp_neighbor,                       // neighbor
-				4,									  // track ID
-				7,									  // bierbitindex
-				TRUE
-		);
-		schedule_addActiveSlot(
-				77,                   // slot offset
-				CELLTYPE_RX,                  		  // type of slot
-				FALSE,                                // shared?
-				0,                                    // channel offset
-				&temp_neighbor,                       // neighbor
-				4,									  // track ID
-				8,									  // bierbitindex
-				TRUE
-		);
-		schedule_addActiveSlot(
-				78,                   // slot offset
-				CELLTYPE_TX,                  		  // type of slot
-				FALSE,                                // shared?
-				0,                                    // channel offset
-				&temp_neighbor,                       // neighbor
-				4,									  // track ID
-				8,									  // bierbitindex
-				TRUE
-		);
-		schedule_addActiveSlot(
-				80,                   // slot offset
-				CELLTYPE_TX,                  		  // type of slot
-				FALSE,                                // shared?
-				0,                                    // channel offset
-				&temp_neighbor,                       // neighbor
-				4,									  // track ID
-				10,									  // bierbitindex
-				TRUE
-		);
-		break;
-	case 0xc3 :
-		schedule_addActiveSlot(
 				22,                   // slot offset
 				CELLTYPE_RX,                  		  // type of slot
 				FALSE,                                // shared?
 				0,                                    // channel offset
 				&temp_neighbor,                       // neighbor
 				1,									  // track ID
-				9,									  // bierbitindex
+				7,									  // bierbitindex
 				TRUE
 		);
 		schedule_addActiveSlot(
 				23,                   // slot offset
 				CELLTYPE_RX,                  		  // type of slot
+				FALSE,                                // shared?
+				0,                                    // channel offset
+				&temp_neighbor,                       // neighbor
+				1,									  // track ID
+				8,									  // bierbitindex
+				TRUE
+		);
+		schedule_addActiveSlot(
+				24,                   // slot offset
+				CELLTYPE_TX,                  		  // type of slot
+				FALSE,                                // shared?
+				0,                                    // channel offset
+				&temp_neighbor,                       // neighbor
+				1,									  // track ID
+				8,									  // bierbitindex
+				TRUE
+		);
+		schedule_addActiveSlot(
+				26,                   // slot offset
+				CELLTYPE_TX,                  		  // type of slot
 				FALSE,                                // shared?
 				0,                                    // channel offset
 				&temp_neighbor,                       // neighbor
@@ -623,11 +561,73 @@ void schedule_init() {
 				0,                                    // channel offset
 				&temp_neighbor,                       // neighbor
 				4,									  // track ID
-				9,									  // bierbitindex
+				7,									  // bierbitindex
 				TRUE
 		);
 		schedule_addActiveSlot(
 				80,                   // slot offset
+				CELLTYPE_RX,                  		  // type of slot
+				FALSE,                                // shared?
+				0,                                    // channel offset
+				&temp_neighbor,                       // neighbor
+				4,									  // track ID
+				8,									  // bierbitindex
+				TRUE
+		);
+		schedule_addActiveSlot(
+				81,                   // slot offset
+				CELLTYPE_TX,                  		  // type of slot
+				FALSE,                                // shared?
+				0,                                    // channel offset
+				&temp_neighbor,                       // neighbor
+				4,									  // track ID
+				8,									  // bierbitindex
+				TRUE
+		);
+		schedule_addActiveSlot(
+				83,                   // slot offset
+				CELLTYPE_TX,                  		  // type of slot
+				FALSE,                                // shared?
+				0,                                    // channel offset
+				&temp_neighbor,                       // neighbor
+				4,									  // track ID
+				10,									  // bierbitindex
+				TRUE
+		);
+		break;
+	case 0xc3 :
+		schedule_addActiveSlot(
+				25,                   // slot offset
+				CELLTYPE_RX,                  		  // type of slot
+				FALSE,                                // shared?
+				0,                                    // channel offset
+				&temp_neighbor,                       // neighbor
+				1,									  // track ID
+				9,									  // bierbitindex
+				TRUE
+		);
+		schedule_addActiveSlot(
+				26,                   // slot offset
+				CELLTYPE_RX,                  		  // type of slot
+				FALSE,                                // shared?
+				0,                                    // channel offset
+				&temp_neighbor,                       // neighbor
+				1,									  // track ID
+				10,									  // bierbitindex
+				TRUE
+		);
+		schedule_addActiveSlot(
+				82,                   // slot offset
+				CELLTYPE_RX,                  		  // type of slot
+				FALSE,                                // shared?
+				0,                                    // channel offset
+				&temp_neighbor,                       // neighbor
+				4,									  // track ID
+				9,									  // bierbitindex
+				TRUE
+		);
+		schedule_addActiveSlot(
+				83,                   // slot offset
 				CELLTYPE_RX,                  		  // type of slot
 				FALSE,                                // shared?
 				0,                                    // channel offset
@@ -642,7 +642,7 @@ void schedule_init() {
 	}
 
 	// track 2 and 3 slots :
-	for (running_slotOffset=25;running_slotOffset<45;running_slotOffset++) {
+	for (running_slotOffset=28;running_slotOffset<48;running_slotOffset++) {
 		schedule_addActiveSlot(
 				running_slotOffset,                    // slot offset
 				CELLTYPE_TXRX,                     // type of slot
@@ -654,7 +654,7 @@ void schedule_init() {
 				FALSE                                  // bier
 		);
 	}
-	for (running_slotOffset=46;running_slotOffset<66;running_slotOffset++) {
+	for (running_slotOffset=49;running_slotOffset<69;running_slotOffset++) {
 		schedule_addActiveSlot(
 				running_slotOffset,                    // slot offset
 				CELLTYPE_TXRX,                     // type of slot
@@ -669,7 +669,7 @@ void schedule_init() {
 
 	// shared sync slots
 	schedule_addActiveSlot(
-			24,                 // slot offset
+			27,                 // slot offset
 			CELLTYPE_TXRX,                      // type of slot
 			TRUE,                               // shared?
 			SCHEDULE_MINIMAL_6TISCH_CHANNELOFFSET,    // channel offset
@@ -679,7 +679,7 @@ void schedule_init() {
 			FALSE                                // bier
 	);
 	schedule_addActiveSlot(
-			45,                 // slot offset
+			48,                 // slot offset
 			CELLTYPE_TXRX,                      // type of slot
 			TRUE,                               // shared?
 			SCHEDULE_MINIMAL_6TISCH_CHANNELOFFSET,    // channel offset
@@ -689,7 +689,7 @@ void schedule_init() {
 			FALSE                                // bier
 	);
 	schedule_addActiveSlot(
-			66,                 // slot offset
+			69,                 // slot offset
 			CELLTYPE_TXRX,                      // type of slot
 			TRUE,                               // shared?
 			SCHEDULE_MINIMAL_6TISCH_CHANNELOFFSET,    // channel offset
