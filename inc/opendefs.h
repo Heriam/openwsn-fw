@@ -269,7 +269,8 @@ enum {
    ERR_TEST_RCVD_MSG_3                 = 0x53, // received a message from track 3
    ERR_TEST_RESET_TX                   = 0x54, // When the TX stats of a slot reach 0xFF and are reset to 0
    ERR_TEST_RESET_RX                   = 0x55,  // When the RX stats of a slot reach 0xFF and are reset to 0
-   ERR_TEST_RCVD_MSG_4                 = 0x56  // received a message from track 4
+   ERR_TEST_RCVD_MSG_4                 = 0x56,  // received a message from track 4
+   ERR_TEST_RCVD_MSG_5                 = 0x57  // received a message from track 4
 };
 
 //=========================== typedef =========================================

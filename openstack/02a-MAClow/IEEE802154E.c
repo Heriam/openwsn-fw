@@ -994,6 +994,9 @@ port_INLINE void activity_ti1ORri1() {
              else if (schedule_getTrackID()==4){
                 ieee154e_vars.sentOnTrackFour = TRUE;
              }
+             else if (schedule_getTrackID()==5){
+                ieee154e_vars.sentOnTrackFive = TRUE;
+             }
         	 // arm tt1
         	 radiotimer_schedule(DURATION_tt1);
         	 break;
@@ -1621,8 +1624,9 @@ port_INLINE void activity_ri5(PORT_RADIOTIMER_WIDTH capturedTime) {
     		  ieee154e_vars.sentOnTrackThree = TRUE;
     	  } else if (schedule_getTrackID()==4){
              ieee154e_vars.sentOnTrackFour = TRUE;
+          } else if (schedule_getTrackID()==5){
+             ieee154e_vars.sentOnTrackFive = TRUE;
           }
-
       }
 
       // if security is enabled, decrypt/authenticate the frame.
@@ -2451,6 +2455,7 @@ void endSlot() {
        }
        ieee154e_vars.sentOnTrackTwo = FALSE;
        ieee154e_vars.sentOnTrackThree = FALSE;
+       ieee154e_vars.sentOnTrackFive = FALSE;
    }
 
    
