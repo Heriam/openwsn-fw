@@ -258,6 +258,8 @@ typedef struct {
    bool                      sentOnTrackOne;
    bool                      sentOnTrackTwo;
    bool                      sentOnTrackThree;
+    bool                      sentOnTrackFour;
+    bool                      sentOnTrackFive;
 } ieee154e_vars_t;
 
 BEGIN_PACK

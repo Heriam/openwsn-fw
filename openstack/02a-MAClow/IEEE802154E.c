@@ -962,7 +962,7 @@ port_INLINE void activity_ti1ORri1() {
         		 if(bier_macIsBitSet(ieee154e_vars.dataToSend, schedule_getBundleID())){
         			 bier_macResetBit(ieee154e_vars.dataToSend, schedule_getBundleID());
         			 ieee154e_vars.wasBitReset = TRUE;
-        			 openserial_printInfo(COMPONENT_IEEE802154E, ERR_BIER_FORWARDED, (errorparameter_t)*(ieee154e_vars.dataToSend->l2_bierBitmap), (errorparameter_t)*(ieee154e_vars.dataToSend->l2_bierBitmap+1));
+//        			 openserial_printInfo(COMPONENT_IEEE802154E, ERR_BIER_FORWARDED, (errorparameter_t)*(ieee154e_vars.dataToSend->l2_bierBitmap), (errorparameter_t)*(ieee154e_vars.dataToSend->l2_bierBitmap+1));
         		 } else{
         			 ieee154e_vars.dataToSend=NULL;
         			 endSlot();
@@ -990,6 +990,12 @@ port_INLINE void activity_ti1ORri1() {
              }
              else if (schedule_getTrackID()==3){
             	 ieee154e_vars.sentOnTrackThree = TRUE;
+             }
+             else if (schedule_getTrackID()==4){
+                ieee154e_vars.sentOnTrackFour = TRUE;
+             }
+             else if (schedule_getTrackID()==5){
+                ieee154e_vars.sentOnTrackFive = TRUE;
              }
 
         	 // arm tt1
@@ -1617,7 +1623,11 @@ port_INLINE void activity_ri5(PORT_RADIOTIMER_WIDTH capturedTime) {
         	  ieee154e_vars.sentOnTrackTwo = TRUE;
     	  } else if (schedule_getTrackID()==3){
     		  ieee154e_vars.sentOnTrackThree = TRUE;
-    	  }
+    	  } else if (schedule_getTrackID()==4){
+             ieee154e_vars.sentOnTrackFour = TRUE;
+          } else if (schedule_getTrackID()==5){
+             ieee154e_vars.sentOnTrackFive = TRUE;
+          }
 
       }
 
@@ -2445,8 +2455,9 @@ void endSlot() {
        }else{
     	   leds_error_off();
        }
-
        ieee154e_vars.sentOnTrackThree = FALSE;
+       ieee154e_vars.sentOnTrackFour = FALSE;
+       ieee154e_vars.sentOnTrackFive = FALSE;
    }
 
    
