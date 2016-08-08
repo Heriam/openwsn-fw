@@ -362,7 +362,7 @@ void schedule_init() {
 	}
 
 	// track 2 and 3 slots :
-	for (running_slotOffset=25;running_slotOffset<45;running_slotOffset++) {
+	for (running_slotOffset=25;running_slotOffset<37;running_slotOffset++) {
 		schedule_addActiveSlot(
 				running_slotOffset,                    // slot offset
 				CELLTYPE_TXRX,                     // type of slot
@@ -374,7 +374,7 @@ void schedule_init() {
 				FALSE                                  // bier
 		);
 	}
-	for (running_slotOffset=46;running_slotOffset<66;running_slotOffset++) {
+	for (running_slotOffset=37;running_slotOffset<49;running_slotOffset++) {
 		schedule_addActiveSlot(
 				running_slotOffset,                    // slot offset
 				CELLTYPE_TXRX,                     // type of slot
@@ -399,7 +399,7 @@ void schedule_init() {
 			FALSE                                // bier
 	);
 	schedule_addActiveSlot(
-			45,                 // slot offset
+			49,                 // slot offset
 			CELLTYPE_TXRX,                      // type of slot
 			TRUE,                               // shared?
 			SCHEDULE_MINIMAL_6TISCH_CHANNELOFFSET,    // channel offset
