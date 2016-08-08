@@ -27,7 +27,7 @@ The superframe repears over time and can be arbitrarly long.
 #define SCHEDULE_MINIMAL_6TISCH_DEFAULT_SLOTFRAME_NUMBER          1 //1 slotframe by default.
 #define SCHEDULE_MAXHARDCODED_CELLS								  72
 
-#define NUMSERIALRX          15
+#define NUMSERIALRX          9
 
 /*
   NUMSLOTSOFF is the max number of cells that the mote can add into schedule, 
