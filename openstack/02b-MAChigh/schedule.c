@@ -105,16 +105,6 @@ void schedule_init() {
 				TRUE
 		);
 		schedule_addActiveSlot(
-				17,                   // slot offset
-				CELLTYPE_TX,                  		  // type of slot
-				FALSE,                                // shared?
-				0,                                    // channel offset
-				&temp_neighbor,                       // neighbor
-				1,									  // track ID
-				3,									  // bierbitindex
-				TRUE
-		);
-		schedule_addActiveSlot(
 				70,                   // slot offset
 				CELLTYPE_RX,                  		  // type of slot
 				FALSE,                                // shared?
