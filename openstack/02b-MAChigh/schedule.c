@@ -72,6 +72,18 @@ void schedule_init() {
 				0,									  // bierbitindex
 				TRUE
 		);
+		break;
+	case 0x4a :
+		schedule_addActiveSlot(
+				10,                   // slot offset
+				CELLTYPE_RX,                  		  // type of slot
+				FALSE,                                // shared?
+				0,                                    // channel offset
+				&temp_neighbor,                       // neighbor
+				1,									  // track ID
+				0,									  // bierbitindex
+				TRUE
+		);
 		schedule_addActiveSlot(
 				11,                   // slot offset
 				CELLTYPE_TX,                  		  // type of slot
@@ -83,7 +95,7 @@ void schedule_init() {
 				TRUE
 		);
 		break;
-	case 0x4a :
+	case 0x02 :
 		schedule_addActiveSlot(
 				10,                   // slot offset
 				CELLTYPE_RX,                  		  // type of slot
@@ -104,28 +116,8 @@ void schedule_init() {
 				2,									  // bierbitindex
 				TRUE
 		);
-		schedule_addActiveSlot(
-				13,                   // slot offset
-				CELLTYPE_RX,                  		  // type of slot
-				FALSE,                                // shared?
-				0,                                    // channel offset
-				&temp_neighbor,                       // neighbor
-				1,									  // track ID
-				2,									  // bierbitindex
-				TRUE
-		);
-		schedule_addActiveSlot(
-				14,                   // slot offset
-				CELLTYPE_TX,                  		  // type of slot
-				FALSE,                                // shared?
-				0,                                    // channel offset
-				&temp_neighbor,                       // neighbor
-				1,									  // track ID
-				3,									  // bierbitindex
-				TRUE
-		);
 		break;
-	case 0x02 :
+	case 0xd8 :
 		schedule_addActiveSlot(
 				11,                   // slot offset
 				CELLTYPE_RX,                  		  // type of slot
@@ -136,6 +128,18 @@ void schedule_init() {
 				1,									  // bierbitindex
 				TRUE
 		);
+		schedule_addActiveSlot(
+				14,                   // slot offset
+				CELLTYPE_TX,                  		  // type of slot
+				FALSE,                                // shared?
+				0,                                    // channel offset
+				&temp_neighbor,                       // neighbor
+				1,									  // track ID
+				4,									  // bierbitindex
+				TRUE
+		);
+		break;
+	case 0xc7 :
 		schedule_addActiveSlot(
 				12,                   // slot offset
 				CELLTYPE_RX,                  		  // type of slot
@@ -153,7 +157,19 @@ void schedule_init() {
 				0,                                    // channel offset
 				&temp_neighbor,                       // neighbor
 				1,									  // track ID
-				2,									  // bierbitindex
+				3,									  // bierbitindex
+				TRUE
+		);
+		break;
+	case 0xf6 :
+		schedule_addActiveSlot(
+				14,                   // slot offset
+				CELLTYPE_RX,                  		  // type of slot
+				FALSE,                                // shared?
+				0,                                    // channel offset
+				&temp_neighbor,                       // neighbor
+				1,									  // track ID
+				4,									  // bierbitindex
 				TRUE
 		);
 		schedule_addActiveSlot(
@@ -163,13 +179,13 @@ void schedule_init() {
 				0,                                    // channel offset
 				&temp_neighbor,                       // neighbor
 				1,									  // track ID
-				4,									  // bierbitindex
+				5,									  // bierbitindex
 				TRUE
 		);
 		break;
-	case 0xd8 :
+	case 0xec :
 		schedule_addActiveSlot(
-				14,                   // slot offset
+				13,                   // slot offset
 				CELLTYPE_RX,                  		  // type of slot
 				FALSE,                                // shared?
 				0,                                    // channel offset
@@ -185,31 +201,11 @@ void schedule_init() {
 				0,                                    // channel offset
 				&temp_neighbor,                       // neighbor
 				1,									  // track ID
-				5,									  // bierbitindex
-				TRUE
-		);
-		schedule_addActiveSlot(
-				17,                   // slot offset
-				CELLTYPE_RX,                  		  // type of slot
-				FALSE,                                // shared?
-				0,                                    // channel offset
-				&temp_neighbor,                       // neighbor
-				1,									  // track ID
-				5,									  // bierbitindex
-				TRUE
-		);
-		schedule_addActiveSlot(
-				18,                   // slot offset
-				CELLTYPE_TX,                  		  // type of slot
-				FALSE,                                // shared?
-				0,                                    // channel offset
-				&temp_neighbor,                       // neighbor
-				1,									  // track ID
 				6,									  // bierbitindex
 				TRUE
 		);
 		break;
-	case 0xc7 :
+	case 0xc3 :
 		schedule_addActiveSlot(
 				15,                   // slot offset
 				CELLTYPE_RX,                  		  // type of slot
@@ -217,7 +213,7 @@ void schedule_init() {
 				0,                                    // channel offset
 				&temp_neighbor,                       // neighbor
 				1,									  // track ID
-				4,									  // bierbitindex
+				5,									  // bierbitindex
 				TRUE
 		);
 		schedule_addActiveSlot(
@@ -227,133 +223,7 @@ void schedule_init() {
 				0,                                    // channel offset
 				&temp_neighbor,                       // neighbor
 				1,									  // track ID
-				5,									  // bierbitindex
-				TRUE
-		);
-		schedule_addActiveSlot(
-				17,                   // slot offset
-				CELLTYPE_TX,                  		  // type of slot
-				FALSE,                                // shared?
-				0,                                    // channel offset
-				&temp_neighbor,                       // neighbor
-				1,									  // track ID
-				5,									  // bierbitindex
-				TRUE
-		);
-		schedule_addActiveSlot(
-				19,                   // slot offset
-				CELLTYPE_TX,                  		  // type of slot
-				FALSE,                                // shared?
-				0,                                    // channel offset
-				&temp_neighbor,                       // neighbor
-				1,									  // track ID
-				7,									  // bierbitindex
-				TRUE
-		);
-		break;
-	case 0xf6 :
-		schedule_addActiveSlot(
-				18,                   // slot offset
-				CELLTYPE_RX,                  		  // type of slot
-				FALSE,                                // shared?
-				0,                                    // channel offset
-				&temp_neighbor,                       // neighbor
-				1,									  // track ID
 				6,									  // bierbitindex
-				TRUE
-		);
-		schedule_addActiveSlot(
-				20,                   // slot offset
-				CELLTYPE_TX,                  		  // type of slot
-				FALSE,                                // shared?
-				0,                                    // channel offset
-				&temp_neighbor,                       // neighbor
-				1,									  // track ID
-				8,									  // bierbitindex
-				TRUE
-		);
-		schedule_addActiveSlot(
-				21,                   // slot offset
-				CELLTYPE_RX,                  		  // type of slot
-				FALSE,                                // shared?
-				0,                                    // channel offset
-				&temp_neighbor,                       // neighbor
-				1,									  // track ID
-				8,									  // bierbitindex
-				TRUE
-		);
-		schedule_addActiveSlot(
-				22,                   // slot offset
-				CELLTYPE_TX,                  		  // type of slot
-				FALSE,                                // shared?
-				0,                                    // channel offset
-				&temp_neighbor,                       // neighbor
-				1,									  // track ID
-				9,									  // bierbitindex
-				TRUE
-		);
-		break;
-	case 0xec :
-		schedule_addActiveSlot(
-				19,                   // slot offset
-				CELLTYPE_RX,                  		  // type of slot
-				FALSE,                                // shared?
-				0,                                    // channel offset
-				&temp_neighbor,                       // neighbor
-				1,									  // track ID
-				7,									  // bierbitindex
-				TRUE
-		);
-		schedule_addActiveSlot(
-				20,                   // slot offset
-				CELLTYPE_RX,                  		  // type of slot
-				FALSE,                                // shared?
-				0,                                    // channel offset
-				&temp_neighbor,                       // neighbor
-				1,									  // track ID
-				8,									  // bierbitindex
-				TRUE
-		);
-		schedule_addActiveSlot(
-				21,                   // slot offset
-				CELLTYPE_TX,                  		  // type of slot
-				FALSE,                                // shared?
-				0,                                    // channel offset
-				&temp_neighbor,                       // neighbor
-				1,									  // track ID
-				8,									  // bierbitindex
-				TRUE
-		);
-		schedule_addActiveSlot(
-				23,                   // slot offset
-				CELLTYPE_TX,                  		  // type of slot
-				FALSE,                                // shared?
-				0,                                    // channel offset
-				&temp_neighbor,                       // neighbor
-				1,									  // track ID
-				10,									  // bierbitindex
-				TRUE
-		);
-		break;
-	case 0xc3 :
-		schedule_addActiveSlot(
-				22,                   // slot offset
-				CELLTYPE_RX,                  		  // type of slot
-				FALSE,                                // shared?
-				0,                                    // channel offset
-				&temp_neighbor,                       // neighbor
-				1,									  // track ID
-				9,									  // bierbitindex
-				TRUE
-		);
-		schedule_addActiveSlot(
-				23,                   // slot offset
-				CELLTYPE_RX,                  		  // type of slot
-				FALSE,                                // shared?
-				0,                                    // channel offset
-				&temp_neighbor,                       // neighbor
-				1,									  // track ID
-				10,									  // bierbitindex
 				TRUE
 		);
 		break;
