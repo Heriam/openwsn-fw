@@ -817,7 +817,7 @@ void schedule_init() {
 				running_slotOffset,                    // slot offset
 				CELLTYPE_TXRX,                     // type of slot
 				FALSE,                                 // shared?
-				0,                                     // channel offset
+				(running_slotOffset-10)%16,                                     // channel offset
 				&temp_neighbor,                        // neighbor
 				2,										// trackID
 				0,										// bundleID
@@ -829,7 +829,7 @@ void schedule_init() {
 				running_slotOffset,                    // slot offset
 				CELLTYPE_TXRX,                     // type of slot
 				FALSE,                                 // shared?
-				0,                                     // channel offset
+				(running_slotOffset-10)%16,                                     // channel offset
 				&temp_neighbor,                        // neighbor
 				3,										// trackID
 				0,										// bundleID
