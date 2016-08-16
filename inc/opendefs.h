@@ -271,6 +271,7 @@ enum {
    ERR_TEST_RESET_RX                   = 0x55,  // When the RX stats of a slot reach 0xFF and are reset to 0
    ERR_TEST_RCVD_MSG_4                 = 0x56,
    ERR_TEST_RCVD_MSG_5                 = 0x57,
+    ERR_TEST_RCVD_MSG_6                 = 0x58,
 };
 
 //=========================== typedef =========================================

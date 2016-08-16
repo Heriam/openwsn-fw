@@ -50,6 +50,8 @@ owerror_t bier_send(OpenQueueEntry_t *msg) {
 		msg->l2_trackID = 4;
 	}else if(msg->l2_nextORpreviousHop.addr_64b[7]==0x05){
 		msg->l2_trackID = 5;
+	}else if(msg->l2_nextORpreviousHop.addr_64b[7]==0x06){
+		msg->l2_trackID = 6;
 	}
 
 	return bier_send_internal(msg);
@@ -112,6 +114,19 @@ void bier_notifEndOfSlotFrame() {
 			} else {
 				openserial_printInfo(COMPONENT_BIER,
 									 ERR_TEST_RCVD_MSG_5,
+									 (errorparameter_t) * msg->l2_bierBitmap,
+									 (errorparameter_t) 0);
+			}
+		}
+		else if(msg->l2_trackID==6) {
+			if (msg->l2_bierBitmapLength > 1) {
+				openserial_printInfo(COMPONENT_BIER,
+									 ERR_TEST_RCVD_MSG_6,
+									 (errorparameter_t) * msg->l2_bierBitmap,
+									 (errorparameter_t) * (msg->l2_bierBitmap + 1));
+			} else {
+				openserial_printInfo(COMPONENT_BIER,
+									 ERR_TEST_RCVD_MSG_6,
 									 (errorparameter_t) * msg->l2_bierBitmap,
 									 (errorparameter_t) 0);
 			}

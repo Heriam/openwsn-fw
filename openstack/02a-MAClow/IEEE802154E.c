@@ -997,6 +997,9 @@ port_INLINE void activity_ti1ORri1() {
              else if (schedule_getTrackID()==5){
                 ieee154e_vars.sentOnTrackFive = TRUE;
              }
+             else if (schedule_getTrackID()==6){
+                ieee154e_vars.sentOnTrackSix = TRUE;
+             }
 
         	 // arm tt1
         	 radiotimer_schedule(DURATION_tt1);
@@ -1627,6 +1630,8 @@ port_INLINE void activity_ri5(PORT_RADIOTIMER_WIDTH capturedTime) {
              ieee154e_vars.sentOnTrackFour = TRUE;
           } else if (schedule_getTrackID()==5){
              ieee154e_vars.sentOnTrackFive = TRUE;
+          } else if (schedule_getTrackID()==6){
+             ieee154e_vars.sentOnTrackSix = TRUE;
           }
 
       }
@@ -2458,6 +2463,7 @@ void endSlot() {
        ieee154e_vars.sentOnTrackThree = FALSE;
        ieee154e_vars.sentOnTrackFour = FALSE;
        ieee154e_vars.sentOnTrackFive = FALSE;
+       ieee154e_vars.sentOnTrackSix = FALSE;
    }
 
    
