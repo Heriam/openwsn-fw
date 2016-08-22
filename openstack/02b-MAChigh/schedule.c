@@ -128,7 +128,7 @@ void schedule_init() {
 					22,                   // slot offset
 					CELLTYPE_TX,                  		  // type of slot
 					FALSE,                                // shared?
-					4,                                    // channel offset
+					5,                                    // channel offset
 					&temp_neighbor,                       // neighbor
 					1,									  // track ID
 					3,									  // bierbitindex
@@ -170,7 +170,7 @@ void schedule_init() {
 					21,                   // slot offset
 					CELLTYPE_TX,                  		  // type of slot
 					FALSE,                                // shared?
-					5,                                    // channel offset
+					6,                                    // channel offset
 					&temp_neighbor,                       // neighbor
 					1,									  // track ID
 					4,									  // bierbitindex
@@ -180,7 +180,7 @@ void schedule_init() {
 					22,                   // slot offset
 					CELLTYPE_TX,                  		  // type of slot
 					FALSE,                                // shared?
-					5,                                    // channel offset
+					7,                                    // channel offset
 					&temp_neighbor,                       // neighbor
 					1,									  // track ID
 					4,									  // bierbitindex
@@ -202,7 +202,7 @@ void schedule_init() {
 					22,                   // slot offset
 					CELLTYPE_RX,                  		  // type of slot
 					FALSE,                                // shared?
-					4,                                    // channel offset
+					5,                                    // channel offset
 					&temp_neighbor,                       // neighbor
 					1,									  // track ID
 					3,									  // bierbitindex
@@ -212,7 +212,7 @@ void schedule_init() {
 					23,                   // slot offset
 					CELLTYPE_TX,                  		  // type of slot
 					FALSE,                                // shared?
-					6,                                    // channel offset
+					8,                                    // channel offset
 					&temp_neighbor,                       // neighbor
 					1,									  // track ID
 					5,									  // bierbitindex
@@ -222,7 +222,7 @@ void schedule_init() {
 					24,                   // slot offset
 					CELLTYPE_RX,                  		  // type of slot
 					FALSE,                                // shared?
-					7,                                    // channel offset
+					9,                                    // channel offset
 					&temp_neighbor,                       // neighbor
 					1,									  // track ID
 					5,									  // bierbitindex
@@ -232,7 +232,7 @@ void schedule_init() {
 					25,                   // slot offset
 					CELLTYPE_TX,                  		  // type of slot
 					FALSE,                                // shared?
-					8,                                    // channel offset
+					10,                                    // channel offset
 					&temp_neighbor,                       // neighbor
 					1,									  // track ID
 					6,									  // bierbitindex
@@ -242,7 +242,7 @@ void schedule_init() {
 					26,                   // slot offset
 					CELLTYPE_TX,                  		  // type of slot
 					FALSE,                                // shared?
-					8,                                    // channel offset
+					11,                                    // channel offset
 					&temp_neighbor,                       // neighbor
 					1,									  // track ID
 					6,									  // bierbitindex
@@ -254,7 +254,7 @@ void schedule_init() {
 					21,                   // slot offset
 					CELLTYPE_RX,                  		  // type of slot
 					FALSE,                                // shared?
-					5,                                    // channel offset
+					6,                                    // channel offset
 					&temp_neighbor,                       // neighbor
 					1,									  // track ID
 					4,									  // bierbitindex
@@ -264,7 +264,7 @@ void schedule_init() {
 					22,                   // slot offset
 					CELLTYPE_RX,                  		  // type of slot
 					FALSE,                                // shared?
-					5,                                    // channel offset
+					7,                                    // channel offset
 					&temp_neighbor,                       // neighbor
 					1,									  // track ID
 					4,									  // bierbitindex
@@ -274,7 +274,7 @@ void schedule_init() {
 					23,                   // slot offset
 					CELLTYPE_RX,                  		  // type of slot
 					FALSE,                                // shared?
-					6,                                    // channel offset
+					8,                                    // channel offset
 					&temp_neighbor,                       // neighbor
 					1,									  // track ID
 					5,									  // bierbitindex
@@ -284,7 +284,7 @@ void schedule_init() {
 					24,                   // slot offset
 					CELLTYPE_TX,                  		  // type of slot
 					FALSE,                                // shared?
-					7,                                    // channel offset
+					9,                                    // channel offset
 					&temp_neighbor,                       // neighbor
 					1,									  // track ID
 					5,									  // bierbitindex
@@ -294,7 +294,7 @@ void schedule_init() {
 					25,                   // slot offset
 					CELLTYPE_TX,                  		  // type of slot
 					FALSE,                                // shared?
-					9,                                    // channel offset
+					12,                                    // channel offset
 					&temp_neighbor,                       // neighbor
 					1,									  // track ID
 					7,									  // bierbitindex
@@ -304,7 +304,7 @@ void schedule_init() {
 					26,                   // slot offset
 					CELLTYPE_TX,                  		  // type of slot
 					FALSE,                                // shared?
-					9,                                    // channel offset
+					13,                                    // channel offset
 					&temp_neighbor,                       // neighbor
 					1,									  // track ID
 					7,									  // bierbitindex
@@ -316,7 +316,7 @@ void schedule_init() {
 					25,                   // slot offset
 					CELLTYPE_RX,                  		  // type of slot
 					FALSE,                                // shared?
-					8,                                    // channel offset
+					10,                                    // channel offset
 					&temp_neighbor,                       // neighbor
 					1,									  // track ID
 					6,									  // bierbitindex
@@ -326,7 +326,7 @@ void schedule_init() {
 					26,                   // slot offset
 					CELLTYPE_RX,                  		  // type of slot
 					FALSE,                                // shared?
-					8,                                    // channel offset
+					11,                                    // channel offset
 					&temp_neighbor,                       // neighbor
 					1,									  // track ID
 					6,									  // bierbitindex
@@ -336,7 +336,7 @@ void schedule_init() {
 					27,                   // slot offset
 					CELLTYPE_TX,                  		  // type of slot
 					FALSE,                                // shared?
-					10,                                    // channel offset
+					14,                                    // channel offset
 					&temp_neighbor,                       // neighbor
 					1,									  // track ID
 					8,									  // bierbitindex
@@ -346,7 +346,7 @@ void schedule_init() {
 					28,                   // slot offset
 					CELLTYPE_RX,                  		  // type of slot
 					FALSE,                                // shared?
-					11,                                    // channel offset
+					15,                                    // channel offset
 					&temp_neighbor,                       // neighbor
 					1,									  // track ID
 					8,									  // bierbitindex
@@ -356,7 +356,7 @@ void schedule_init() {
 					29,                   // slot offset
 					CELLTYPE_TX,                  		  // type of slot
 					FALSE,                                // shared?
-					12,                                    // channel offset
+					0,                                    // channel offset
 					&temp_neighbor,                       // neighbor
 					1,									  // track ID
 					9,									  // bierbitindex
@@ -368,7 +368,7 @@ void schedule_init() {
 					25,                   // slot offset
 					CELLTYPE_RX,                  		  // type of slot
 					FALSE,                                // shared?
-					9,                                    // channel offset
+					12,                                    // channel offset
 					&temp_neighbor,                       // neighbor
 					1,									  // track ID
 					7,									  // bierbitindex
@@ -378,7 +378,7 @@ void schedule_init() {
 					26,                   // slot offset
 					CELLTYPE_RX,                  		  // type of slot
 					FALSE,                                // shared?
-					9,                                    // channel offset
+					13,                                    // channel offset
 					&temp_neighbor,                       // neighbor
 					1,									  // track ID
 					7,									  // bierbitindex
@@ -388,7 +388,7 @@ void schedule_init() {
 					27,                   // slot offset
 					CELLTYPE_RX,                  		  // type of slot
 					FALSE,                                // shared?
-					10,                                    // channel offset
+					14,                                    // channel offset
 					&temp_neighbor,                       // neighbor
 					1,									  // track ID
 					8,									  // bierbitindex
@@ -398,7 +398,7 @@ void schedule_init() {
 					28,                   // slot offset
 					CELLTYPE_TX,                  		  // type of slot
 					FALSE,                                // shared?
-					11,                                    // channel offset
+					15,                                    // channel offset
 					&temp_neighbor,                       // neighbor
 					1,									  // track ID
 					8,									  // bierbitindex
@@ -408,7 +408,7 @@ void schedule_init() {
 					30,                   // slot offset
 					CELLTYPE_TX,                  		  // type of slot
 					FALSE,                                // shared?
-					13,                                    // channel offset
+					1,                                    // channel offset
 					&temp_neighbor,                       // neighbor
 					1,									  // track ID
 					10,									  // bierbitindex
@@ -420,7 +420,7 @@ void schedule_init() {
 					29,                   // slot offset
 					CELLTYPE_RX,                  		  // type of slot
 					FALSE,                                // shared?
-					12,                                    // channel offset
+					0,                                    // channel offset
 					&temp_neighbor,                       // neighbor
 					1,									  // track ID
 					9,									  // bierbitindex
@@ -430,7 +430,7 @@ void schedule_init() {
 					30,                   // slot offset
 					CELLTYPE_RX,                  		  // type of slot
 					FALSE,                                // shared?
-					13,                                    // channel offset
+					1,                                    // channel offset
 					&temp_neighbor,                       // neighbor
 					1,									  // track ID
 					10,									  // bierbitindex
