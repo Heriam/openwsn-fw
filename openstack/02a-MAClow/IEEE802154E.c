@@ -2443,9 +2443,9 @@ void endSlot() {
        bier_notifEndOfSlotFrame();
 
        // leds for the demo
-       if(ieee154e_vars.sentOnTrackOne){
+       if(ieee154e_vars.sentOnTrackFour){
     	   leds_radio_on();
-    	   ieee154e_vars.sentOnTrackOne = FALSE;
+    	   ieee154e_vars.sentOnTrackFour = FALSE;
        }else{
     	   leds_radio_off();
        }
@@ -2455,9 +2455,13 @@ void endSlot() {
        }else{
     	   leds_error_off();
        }
-       ieee154e_vars.sentOnTrackThree = FALSE;
-       ieee154e_vars.sentOnTrackFour = FALSE;
-       ieee154e_vars.sentOnTrackFive = FALSE;
+       if(ieee154e_vars.sentOnTrackThree){
+           leds_debug_on();
+           ieee154e_vars.sentOnTrackThree = FALSE;
+       }else{
+           leds_debug_off();
+       }
+       ieee154e_vars.sentOnTrackOne = FALSE;
    }
 
    
