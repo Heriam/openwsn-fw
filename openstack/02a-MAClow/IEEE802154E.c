@@ -2449,19 +2449,14 @@ void endSlot() {
        }else{
     	   leds_radio_off();
        }
-       if(ieee154e_vars.sentOnTrackTwo){
+       if(ieee154e_vars.sentOnTrackOne){
     	   leds_error_on();
-    	   ieee154e_vars.sentOnTrackTwo = FALSE;
+    	   ieee154e_vars.sentOnTrackOne = FALSE;
        }else{
     	   leds_error_off();
        }
-       if(ieee154e_vars.sentOnTrackThree){
-           leds_debug_on();
-           ieee154e_vars.sentOnTrackThree = FALSE;
-       }else{
-           leds_debug_off();
-       }
-       ieee154e_vars.sentOnTrackOne = FALSE;
+       ieee154e_vars.sentOnTrackThree = FALSE;
+       ieee154e_vars.sentOnTrackTwo = FALSE;
    }
 
    
