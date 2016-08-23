@@ -77,45 +77,6 @@ void bier_notifEndOfSlotFrame() {
 	// send received BIER packets up the stack
 	msg = openqueue_bierGetPacketToSendUp();
 	while(msg!=NULL){
-		if(msg->l2_trackID==1) {
-			if (msg->l2_bierBitmapLength > 1) {
-				openserial_printInfo(COMPONENT_BIER,
-									 ERR_BIER_RECEIVED,
-									 (errorparameter_t) * msg->l2_bierBitmap,
-									 (errorparameter_t) * (msg->l2_bierBitmap + 1));
-			} else {
-				openserial_printInfo(COMPONENT_BIER,
-									 ERR_BIER_RECEIVED,
-									 (errorparameter_t) * msg->l2_bierBitmap,
-									 (errorparameter_t) 0);
-			}
-		}
-		else if(msg->l2_trackID==4) {
-			if (msg->l2_bierBitmapLength > 1) {
-				openserial_printInfo(COMPONENT_BIER,
-									 ERR_TEST_RCVD_MSG_4,
-									 (errorparameter_t) * msg->l2_bierBitmap,
-									 (errorparameter_t) * (msg->l2_bierBitmap + 1));
-			} else {
-				openserial_printInfo(COMPONENT_BIER,
-									 ERR_TEST_RCVD_MSG_4,
-									 (errorparameter_t) * msg->l2_bierBitmap,
-									 (errorparameter_t) 0);
-			}
-		}
-		else if(msg->l2_trackID==5) {
-			if (msg->l2_bierBitmapLength > 1) {
-				openserial_printInfo(COMPONENT_BIER,
-									 ERR_TEST_RCVD_MSG_5,
-									 (errorparameter_t) * msg->l2_bierBitmap,
-									 (errorparameter_t) * (msg->l2_bierBitmap + 1));
-			} else {
-				openserial_printInfo(COMPONENT_BIER,
-									 ERR_TEST_RCVD_MSG_5,
-									 (errorparameter_t) * msg->l2_bierBitmap,
-									 (errorparameter_t) 0);
-			}
-		}
 		openserial_printBitString(msg->l2_bierBitmap,
 								  msg->l2_bierBitmapLength,
 								  msg->l2_trackID);
