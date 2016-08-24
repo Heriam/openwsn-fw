@@ -1823,9 +1823,9 @@ void schedule_indicateRx(asn_t* asnTimestamp) {
    DISABLE_INTERRUPTS();
    
    // increment usage statistics
-   if (schedule_vars.currentScheduleEntry->numRx==0xFF) {
-  	  openserial_printInfo(COMPONENT_SCHEDULE, ERR_TEST_RESET_RX, (errorparameter_t)schedule_vars.currentScheduleEntry->slotOffset, (errorparameter_t)schedule_vars.currentScheduleEntry->numRx);
-   }
+//   if (schedule_vars.currentScheduleEntry->numRx==0xFF) {
+//  	  openserial_printInfo(COMPONENT_SCHEDULE, ERR_TEST_RESET_RX, (errorparameter_t)schedule_vars.currentScheduleEntry->slotOffset, (errorparameter_t)schedule_vars.currentScheduleEntry->numRx);
+//   }
    schedule_vars.currentScheduleEntry->numRx++;
 
    // update last used timestamp
@@ -1844,7 +1844,7 @@ void schedule_indicateTx(asn_t* asnTimestamp, bool succesfullTx) {
    
    // increment usage statistics
    if (schedule_vars.currentScheduleEntry->numTx==0xFF) {
-	  openserial_printInfo(COMPONENT_SCHEDULE, ERR_TEST_RESET_TX, (errorparameter_t)schedule_vars.currentScheduleEntry->slotOffset, (errorparameter_t)schedule_vars.currentScheduleEntry->numTxACK);
+//	  openserial_printInfo(COMPONENT_SCHEDULE, ERR_TEST_RESET_TX, (errorparameter_t)schedule_vars.currentScheduleEntry->slotOffset, (errorparameter_t)schedule_vars.currentScheduleEntry->numTxACK);
       schedule_vars.currentScheduleEntry->numTx=0;
       schedule_vars.currentScheduleEntry->numTxACK=0;
    }
