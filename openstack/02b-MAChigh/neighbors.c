@@ -252,12 +252,48 @@ bool neighbors_isPreferredParent(open_addr_t* address) {
    // by default, not preferred
    returnVal = FALSE;
    
-   // iterate through neighbor table
-   for (i=0;i<MAXNUMNEIGHBORS;i++) {
-      if (isThisRowMatching(address,i) && neighbors_vars.neighbors[i].parentPreference >= MAXPREFERENCE-2) {
-         returnVal  = TRUE;
+   switch (idmanager_getMyID(ADDR_64B)->addr_64b[7]) {
+
+      case 0xd9:
+         returnVal = FALSE;
          break;
-      }
+      case 0x4a:
+         if ((address -> addr_64b[7] == 0xd9) || (address -> addr_64b[7] == 0x02)) {
+            returnVal = TRUE;
+         }
+         break;
+      case 0x02:
+         if (address -> addr_64b[7] == 0xd9) {
+            returnVal = TRUE;
+         }
+         break;
+      case 0xd8:
+         if (address -> addr_64b[7] == 0x4a) {
+            returnVal = TRUE;
+         }
+         break;
+      case 0xc7:
+         if ((address -> addr_64b[7] == 0xd8) || (address -> addr_64b[7] == 0x02)) {
+            returnVal = TRUE;
+         }
+         break;
+      case 0xec:
+         if (address -> addr_64b[7] == 0xc7) {
+            returnVal = TRUE;
+         }
+         break;
+      case 0xf6:
+         if ((address -> addr_64b[7] == 0xd8) || (address -> addr_64b[7] == 0xec)) {
+            returnVal = TRUE;
+         }
+         break;
+      case 0xc3:
+         if ((address -> addr_64b[7] == 0xf6) || (address -> addr_64b[7] == 0xec)) {
+            returnVal = TRUE;
+         }
+         break;
+      default:
+         break;
    }
    
    ENABLE_INTERRUPTS();
