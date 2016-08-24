@@ -436,9 +436,9 @@ void openserial_stop() {
    //the inputBuffer has to be reset if it is not reset where the data is read.
    //or the function openserial_getInputBuffer is called (which resets the buffer)
    if (busyReceiving==TRUE){
-      openserial_printError(COMPONENT_OPENSERIAL,ERR_BUSY_RECEIVING,
-                                  (errorparameter_t)0,
-                                  (errorparameter_t)inputBufFill);
+//      openserial_printError(COMPONENT_OPENSERIAL,ERR_BUSY_RECEIVING,
+//                                  (errorparameter_t)0,
+//                                  (errorparameter_t)inputBufFill);
    }
    
    if (busyReceiving == FALSE && inputBufFill>0) {
